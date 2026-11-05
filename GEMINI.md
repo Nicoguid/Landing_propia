@@ -1,6 +1,6 @@
 # Portfolio Web - Project Directives & Mandatory Skills
 
-This project is a high-performance, custom-coded web developer portfolio (Vanilla HTML5, Tailwind CSS, Spline 3D, Custom CSS/JS) focusing on extreme speed (<0.3s load), distinctive design (zero templates), and WhatsApp conversion.
+This project is a high-performance, custom-coded web developer portfolio (Vanilla HTML5, Tailwind CSS compilado, Three.js (cabeza de partículas en el hero), Custom CSS/JS) focusing on extreme speed (<0.3s load), distinctive design (zero templates), and WhatsApp conversion.
 
 ## Active Skills & Rules Enforced on Every Prompt
 

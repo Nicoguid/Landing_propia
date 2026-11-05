@@ -1,84 +1,73 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  
-  <title>by.nicocieplak — Desarrollo Web a Medida & Código Puro</title>
-  <meta name="description" content="Diseño y desarrollo de sitios web y aplicaciones a medida con código puro. Rendimiento instantáneo en 0.4 segundos, diseño exclusivo sin plantillas y conversión directa a WhatsApp.">
+
+  <title>by.nicocieplak — Desarrollo web a medida con código puro</title>
+  <meta name="description" content="Diseño y desarrollo de sitios web y plataformas a medida con código puro. Carga instantánea, diseño exclusivo sin plantillas y conexión directa a WhatsApp.">
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://artesanal.dev/">
 
-  <!-- Open Graph -->
+  <!-- Open Graph / redes -->
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
   <meta property="og:url" content="https://artesanal.dev/">
-  <meta property="og:title" content="by.nicocieplak — Desarrollo Web con Código Puro">
+  <meta property="og:title" content="by.nicocieplak — Webs a medida con código puro">
   <meta property="og:description" content="Sitios web veloces, diseño exclusivo y conexión directa a WhatsApp para tu negocio.">
-  <meta property="og:image" content="https://artesanal.dev/assets/images/hero-portrait.jpg">
+  <meta property="og:image" content="https://artesanal.dev/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 
-  <!-- Tipografías: Inter + Geist Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fuentes propias: se precargan para que el título no "salte" -->
+  <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-mono-500.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['Geist Mono', 'monospace']
-          },
-          colors: {
-            'void-black': '#000000',
-            'graphite-hairline': '#292d30',
-            'bone-white': '#f0f0f0',
-            'ash-gray': '#a1a4a5',
-            'electric-blue': '#0070f3',
-            'cyan-accent': '#38bdf8',
-            'neon-blue': '#00e5ff',
-            'pulse-green': '#3ad389',
-            'alarm-red': '#ff9592'
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Estilos Custom con Sistema Resend Exacto + Neon & Animaciones -->
+  <!-- Tailwind compilado (npm run build) + estilos propios -->
+  <link rel="stylesheet" href="assets/css/tailwind.css">
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "by.nicocieplak",
+    "description": "Desarrollo de sitios web y plataformas a medida con código puro.",
+    "url": "https://artesanal.dev/",
+    "areaServed": "AR",
+    "image": "https://artesanal.dev/assets/images/og-image.jpg"
+  }
+  </script>
 </head>
-<body class="bg-[#000000] text-[#f0f0f0]">
+<body>
 
-  <!-- Spotlight Ambiental Global que sigue el cursor -->
-  <div id="global-cursor-aura" class="global-cursor-aura" aria-hidden="true"></div>
+  <!-- Íconos reutilizables (se dibujan una sola vez y se usan con <use>) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.288.043.088.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.203c.044.072.044.419-.1.824z"/>
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+    </symbol>
+  </svg>
 
-  <!-- Salto accesible al contenido principal -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-bold focus:rounded">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-semibold focus:rounded">
     Saltar al contenido principal
   </a>
 
-  <!-- ========================================================================
-       HEADER RESEND — PURE BLACK & GRAPHITE HAIRLINE
-       ======================================================================== -->
-  <header class="site-header">
+  <!-- ======================================================================
+       HEADER
+       ====================================================================== -->
+  <header class="site-header" id="site-header">
     <div class="header-container">
-      
-      <!-- Marca by.nicocieplak -->
-      <a href="#" class="flex items-center gap-2.5 min-h-[44px] focus-visible:outline-none group" aria-label="Inicio by.nicocieplak">
-        <span class="w-7 h-7 rounded-[6px] bg-[#000000] border border-[#292d30] group-hover:border-[#0070f3] flex items-center justify-center font-mono font-semibold text-xs text-[#38bdf8] transition-colors">
-          /&gt;
-        </span>
-        <span class="font-semibold text-sm tracking-tight text-white font-mono">
-          by.nicocieplak
-        </span>
+
+      <a href="#top" class="flex items-center gap-2.5 min-h-[44px] group" aria-label="by.nicocieplak, volver al inicio">
+        <span class="w-7 h-7 rounded-[6px] bg-black border border-graphite group-hover:border-cyan-accent flex items-center justify-center font-mono font-semibold text-xs text-cyan-accent transition-colors" aria-hidden="true">/&gt;</span>
+        <span class="font-mono font-semibold text-sm tracking-tight text-white">by.nicocieplak</span>
       </a>
 
-      <!-- Menú Desktop con Desplazamiento Suave -->
       <nav class="hidden md:flex items-center gap-1" aria-label="Navegación principal">
         <a href="#proyectos" class="nav-link">Proyectos</a>
         <a href="#comparativa" class="nav-link">Rendimiento</a>
@@ -86,213 +75,192 @@
         <a href="#metodologia" class="nav-link">Metodología</a>
       </nav>
 
-      <!-- Botón WhatsApp Destacado + Luz Titilante de Disponibilidad -->
       <div class="flex items-center gap-3">
-        <div class="hidden lg:flex items-center gap-2.5 text-xs font-mono text-[#a1a4a5] mr-2">
-          <span class="resend-dot-green" aria-hidden="true"></span>
+        <div class="hidden lg:flex items-center gap-2.5 text-xs font-mono text-ash mr-1">
+          <span class="live-dot" aria-hidden="true"></span>
           <span>Disponible para proyectos</span>
         </div>
 
-        <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn-resend-primary" data-wa-service="Consulta General">
-          <svg class="w-6 h-6 shrink-0 fill-[#3ad389]" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.288.043.088.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.203c.044.072.044.419-.1.824z"/>
-          </svg>
-          <span class="font-medium text-white">WhatsApp</span>
+        <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline !px-3 sm:!px-4" data-wa="Consulta general">
+          <svg class="w-5 h-5 fill-pulse-green" aria-hidden="true"><use href="#i-wa"/></svg>
+          <span class="sr-only sm:not-sr-only">WhatsApp</span>
         </a>
 
-        <!-- Botón Menú Móvil -->
-        <button id="menu-toggle" type="button" class="md:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center p-2 rounded-[6px] text-[#a1a4a5] hover:text-white" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-drawer">
+        <button id="menu-toggle" type="button" class="md:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-[6px] text-ash hover:text-white active:bg-white/5" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-drawer">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/>
           </svg>
         </button>
       </div>
-
     </div>
   </header>
 
-  <!-- Cajón Móvil con Smooth Scroll -->
-  <div id="mobile-drawer" class="hidden md:hidden fixed top-16 left-4 right-4 z-50 bg-[#000000] border border-[#292d30] rounded-[16px] p-6 space-y-4 shadow-2xl">
-    <nav class="flex flex-col space-y-2" aria-label="Navegación móvil">
-      <a href="#proyectos" class="mobile-link text-base text-[#f0f0f0] hover:text-white min-h-[44px] flex items-center">Proyectos</a>
-      <a href="#comparativa" class="mobile-link text-base text-[#f0f0f0] hover:text-white min-h-[44px] flex items-center">Rendimiento</a>
-      <a href="#servicios" class="mobile-link text-base text-[#f0f0f0] hover:text-white min-h-[44px] flex items-center">Servicios</a>
-      <a href="#metodologia" class="mobile-link text-base text-[#f0f0f0] hover:text-white min-h-[44px] flex items-center">Metodología</a>
+  <div id="mobile-drawer" class="mobile-drawer md:hidden" aria-label="Menú móvil">
+    <nav class="flex flex-col gap-1" aria-label="Navegación móvil">
+      <a href="#proyectos" class="mobile-link">Proyectos</a>
+      <a href="#comparativa" class="mobile-link">Rendimiento</a>
+      <a href="#servicios" class="mobile-link">Servicios</a>
+      <a href="#metodologia" class="mobile-link">Metodología</a>
     </nav>
   </div>
 
-  <!-- ========================================================================
-       MAIN CONTENT
-       ======================================================================== -->
-  <main id="main-content" class="pt-24 lg:pt-32">
+  <main id="main-content">
 
-    <!-- HERO SECTION: Resend Minimal Editorial Hero -->
-    <section class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-      <div class="max-w-3xl mx-auto text-center space-y-8">
-        
-        <!-- Titular H1 Editorial con tracking comprimido (-0.03em) -->
-        <h1 class="text-4xl sm:text-5xl lg:text-[62px] font-semibold text-white tracking-[-0.03em] leading-[1.08] text-balance">
-          Sitios web y plataformas construidas con código puro.
-        </h1>
+    <!-- ====================================================================
+         HERO — título gigante + cabeza 3D de partículas
+         ==================================================================== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
 
-        <!-- Subtítulo en Bone White (#f0f0f0) -->
-        <p class="text-lg sm:text-xl text-[#f0f0f0] font-normal leading-relaxed max-w-2xl mx-auto text-pretty opacity-90">
-          Desarrollo frontend artesanal. Sin plantillas clónicas de WordPress ni dependencias frágiles. Carga instantánea en 0.4 segundos y conexión directa a WhatsApp para cerrar clientes reales.
-        </p>
+      <h1 id="hero-title" class="hero-title">Webs a medida<span class="sr-only"> con código puro, por by.nicocieplak</span></h1>
 
-        <!-- Botones de Acción -->
-        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-          <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-dark" data-wa-service="Cotización de Web a Medida">
-            <svg class="wa-icon shrink-0" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.288.043.088.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.203c.044.072.044.419-.1.824z"/>
-            </svg>
-            <span>Pedir presupuesto por WhatsApp</span>
-          </a>
+      <!-- Acá se monta el canvas (assets/js/hero-head.min.js) -->
+      <div id="hero-head" class="hero-head" aria-hidden="true"></div>
+      <div class="hero-fade" aria-hidden="true"></div>
 
-          <a href="#proyectos" class="btn-resend-ghost">
-            <span>Explorar casos reales</span>
-            <span class="text-[#38bdf8]">→</span>
-          </a>
+      <div class="hero-bottom w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-10">
+
+          <div class="max-w-[440px] space-y-3">
+            <div class="flex items-center gap-2.5 text-xs font-mono text-ash lg:hidden">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>Disponible para proyectos</span>
+            </div>
+            <p class="text-xl sm:text-2xl font-medium text-white tracking-[-0.02em] leading-snug text-balance">
+              Sitios web y plataformas construidas con código puro.
+            </p>
+            <p class="text-sm sm:text-base text-ash leading-relaxed text-pretty">
+              Sin plantillas de WordPress ni plugins frágiles. Carga instantánea y cada botón te conecta directo por WhatsApp con clientes reales.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-wa" data-wa="Cotización de web a medida">
+              <svg aria-hidden="true"><use href="#i-wa"/></svg>
+              <span>Pedir presupuesto</span>
+            </a>
+            <a href="#proyectos" class="btn btn-ghost">
+              <span>Ver proyectos</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
         </div>
+      </div>
 
-        <!-- Métricas con Contadores Progresivos Animados + Neon Hover -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10 border-t border-[#292d30] max-w-2xl mx-auto font-mono text-xs text-left">
-          <div class="p-4 rounded-[8px] bg-[#000000] border border-[#292d30] neon-card-hover">
-            <p class="text-3xl font-bold text-white tabular-nums" data-counter-target="3" data-counter-suffix="x">0x</p>
-            <p class="text-[#a1a4a5] mt-1 text-[11px]">Consultas WhatsApp</p>
-          </div>
-          <div class="p-4 rounded-[8px] bg-[#000000] border border-[#292d30] neon-card-hover">
-            <p class="text-3xl font-bold text-[#38bdf8] tabular-nums" data-counter-target="100" data-counter-suffix="%">0%</p>
-            <p class="text-[#a1a4a5] mt-1 text-[11px]">Diseño a medida</p>
-          </div>
-          <div class="p-4 rounded-[8px] bg-[#000000] border border-[#292d30] neon-card-hover">
-            <p class="text-3xl font-bold text-[#3ad389] tabular-nums" data-counter-target="0.4" data-counter-decimals="1" data-counter-suffix="s">0.0s</p>
-            <p class="text-[#a1a4a5] mt-1 text-[11px]">Carga récord</p>
-          </div>
+      <span class="hero-scroll" aria-hidden="true"></span>
+    </section>
+
+    <!-- Tira de métricas -->
+    <section aria-label="Resultados" class="border-y border-graphite bg-black">
+      <div class="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-3 font-mono">
+        <div class="metric">
+          <p class="text-4xl font-semibold text-white tabular-nums" data-counter="3" data-suffix="x">3x</p>
+          <p class="text-ash mt-1 text-xs">más consultas por WhatsApp</p>
         </div>
-
+        <div class="metric">
+          <p class="text-4xl font-semibold text-cyan-accent tabular-nums" data-counter="100" data-suffix="%">100%</p>
+          <p class="text-ash mt-1 text-xs">diseño propio, cero plantillas</p>
+        </div>
+        <div class="metric">
+          <p class="text-4xl font-semibold text-pulse-green tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
+          <p class="text-ash mt-1 text-xs">tiempo de carga</p>
+        </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         PROYECTOS REALES (Dorear & Splitealo en Ventanas Terminal Resend)
-         ====================================================================== -->
-    <section id="proyectos" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-[#292d30]">
-      
-      <div class="mb-14">
-        <span class="text-xs font-mono text-[#38bdf8] uppercase tracking-wider">// Proyectos en Producción</span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.02em] mt-2 text-balance">
-          Casos reales desarrollados desde cero.
+    <!-- ====================================================================
+         PROYECTOS
+         ==================================================================== -->
+    <section id="proyectos" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32" aria-labelledby="proyectos-title">
+
+      <div class="mb-16 max-w-2xl">
+        <span class="section-kicker">Proyectos en producción</span>
+        <h2 id="proyectos-title" class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.03em] mt-3 text-balance">
+          Casos reales, desarrollados desde cero.
         </h2>
-        <p class="text-[#a1a4a5] text-base mt-2 max-w-xl text-pretty">
-          Evidencia de productos activos atendiendo clientes todos los días con arquitectura pura.
+        <p class="text-ash text-base mt-3 text-pretty">
+          Productos activos que atienden clientes todos los días.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="space-y-24 lg:space-y-32">
 
         <!-- Caso 1: Dorear -->
-        <article class="terminal-window neon-card-hover flex flex-col justify-between">
-          <div class="terminal-header">
-            <div class="traffic-dots">
-              <span class="traffic-dot"></span>
-              <span class="traffic-dot"></span>
-              <span class="traffic-dot"></span>
+        <article class="case grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <a href="https://dorear.com.ar" target="_blank" rel="noopener noreferrer" class="lg:col-span-7 block rounded-xl" aria-label="Abrir dorear.com.ar en una pestaña nueva">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <div class="traffic-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <span class="address-pill"><svg aria-hidden="true"><use href="#i-lock"/></svg>dorear.com.ar</span>
+              </div>
+              <div class="browser-viewport">
+                <picture>
+                  <source srcset="assets/images/dorear-preview.webp" type="image/webp">
+                  <img src="assets/images/dorear-preview.png" alt="Página de Dorear con el menú ejecutivo del día y las categorías de la carta" width="800" height="600" loading="lazy" decoding="async">
+                </picture>
+              </div>
             </div>
-            <span class="terminal-title">Dorear — Catálogo Digital QR</span>
-            <span class="text-[11px] font-mono text-[#3ad389]">● Activo</span>
-          </div>
+          </a>
 
-          <div class="p-8 space-y-4">
-            <h3 class="text-2xl font-semibold text-white">Dorear</h3>
-            
-            <p class="text-[#f0f0f0] text-sm leading-relaxed text-pretty opacity-90">
-              Catálogo gastronómico interactivo con acceso inmediato por código QR en mesas. Elimina los PDFs lentos de 20&nbsp;MB, permitiendo ver la carta al instante en el móvil y gestionar pedidos directos por WhatsApp.
+          <div class="lg:col-span-5 space-y-5">
+            <div class="flex items-end justify-between gap-4">
+              <span class="case-index" aria-hidden="true">01</span>
+              <span class="text-xs font-mono text-pulse-green flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span>En producción</span>
+            </div>
+            <h3 class="text-3xl font-semibold text-white tracking-[-0.02em]">Dorear</h3>
+            <p class="font-mono text-xs text-cyan-accent">Catálogo digital QR · Gastronomía</p>
+            <p class="text-bone/90 leading-relaxed text-pretty">
+              Carta interactiva que se abre al instante escaneando el QR de la mesa. Reemplaza los PDFs pesados de 20&nbsp;MB y deja hacer pedidos directos por WhatsApp.
             </p>
-
-            <!-- Mockup interactivo con Navegador macOS Limpio -->
-            <div class="browser-window my-4">
-              <div class="browser-header-bar">
-                <div class="traffic-dots">
-                  <span class="traffic-dot" style="width:7px;height:7px;"></span>
-                  <span class="traffic-dot" style="width:7px;height:7px;"></span>
-                  <span class="traffic-dot" style="width:7px;height:7px;"></span>
-                </div>
-                <div class="browser-address-pill">
-                  <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                  <span>dorear.com.ar</span>
-                </div>
-              </div>
-              <div class="browser-image-viewport">
-                <img src="assets/images/dorear-preview.png" alt="Captura de la web de Dorear" width="1280" height="800" loading="lazy">
-              </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag text-white">Carga 0.3s</span>
+              <span class="tag">Sin PDFs</span>
+              <span class="tag text-pulse-green">Pedidos por WhatsApp</span>
             </div>
-
-            <div class="flex flex-wrap gap-2 text-xs font-mono text-[#a1a4a5] pt-2">
-              <span class="border border-[#292d30] px-2.5 py-1 rounded-[6px] text-white">Carga 0.3s</span>
-              <span class="border border-[#292d30] px-2.5 py-1 rounded-[6px]">0 PDFs pesados</span>
-              <span class="border border-[#292d30] px-2.5 py-1 rounded-[6px] text-[#3ad389]">WhatsApp Direct</span>
-            </div>
-          </div>
-
-          <!-- ÚNICO BOTÓN VISITAR SITIO EN VIVO -->
-          <div class="p-8 pt-0">
-            <a href="https://dorear.com.ar" target="_blank" rel="noopener noreferrer" class="btn-resend-primary w-full group/btn" aria-label="Ver Dorear en vivo">
+            <a href="https://dorear.com.ar" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
               <span>Visitar sitio en vivo</span>
-              <span class="text-[#38bdf8] group-hover/btn:translate-x-1 transition-transform">→</span>
+              <span class="text-cyan-accent" aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
 
         <!-- Caso 2: Splitealo -->
-        <article class="terminal-window neon-card-hover flex flex-col justify-between">
-          <div class="terminal-header">
-            <div class="traffic-dots">
-              <span class="traffic-dot"></span>
-              <span class="traffic-dot"></span>
-              <span class="traffic-dot"></span>
+        <article class="case grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <a href="https://splitealo.site" target="_blank" rel="noopener noreferrer" class="lg:col-span-7 lg:order-2 block rounded-xl" aria-label="Abrir splitealo.site en una pestaña nueva">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <div class="traffic-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <span class="address-pill"><svg aria-hidden="true"><use href="#i-lock"/></svg>splitealo.site</span>
+              </div>
+              <div class="browser-viewport">
+                <picture>
+                  <source srcset="assets/images/splitealo-preview.webp" type="image/webp">
+                  <img src="assets/images/splitealo-preview.png" alt="Portada de Splitealo: Spliteá la cuenta en segundos" width="800" height="600" loading="lazy" decoding="async">
+                </picture>
+              </div>
             </div>
-            <span class="terminal-title">Splitealo — Web App Interactiva</span>
-            <span class="text-[11px] font-mono text-[#3ad389]">● Activo</span>
-          </div>
+          </a>
 
-          <div class="p-8 space-y-4">
-            <h3 class="text-2xl font-semibold text-white">Splitealo</h3>
-            
-            <p class="text-[#f0f0f0] text-sm leading-relaxed text-pretty opacity-90">
-              Aplicación web de cálculo dinámico para división equitativa de gastos entre grupos. Lógica personalizada en tiempo real sin requerir registros molestos ni descargas de tiendas de apps.
+          <div class="lg:col-span-5 lg:order-1 space-y-5">
+            <div class="flex items-end justify-between gap-4">
+              <span class="case-index" aria-hidden="true">02</span>
+              <span class="text-xs font-mono text-pulse-green flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span>En producción</span>
+            </div>
+            <h3 class="text-3xl font-semibold text-white tracking-[-0.02em]">Splitealo</h3>
+            <p class="font-mono text-xs text-cyan-accent">Web app · Gastos compartidos</p>
+            <p class="text-bone/90 leading-relaxed text-pretty">
+              Divide la cuenta entre amigos en segundos, con cálculo en tiempo real. Sin registro y sin descargar nada: funciona directo desde el navegador.
             </p>
-
-            <!-- Mockup interactivo con Navegador macOS Limpio -->
-            <div class="browser-window my-4">
-              <div class="browser-header-bar">
-                <div class="traffic-dots">
-                  <span class="traffic-dot" style="width:7px;height:7px;"></span>
-                  <span class="traffic-dot" style="width:7px;height:7px;"></span>
-                  <span class="traffic-dot" style="width:7px;height:7px;"></span>
-                </div>
-                <div class="browser-address-pill">
-                  <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                  <span>splitealo.site</span>
-                </div>
-              </div>
-              <div class="browser-image-viewport">
-                <img src="assets/images/splitealo-preview.png" alt="Captura de la web app Splitealo" width="1280" height="800" loading="lazy">
-              </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag text-white">Tiempo real</span>
+              <span class="tag">Sin registro</span>
+              <span class="tag text-cyan-accent">Sin instalar apps</span>
             </div>
-
-            <div class="flex flex-wrap gap-2 text-xs font-mono text-[#a1a4a5] pt-2">
-              <span class="border border-[#292d30] px-2.5 py-1 rounded-[6px] text-white">Tiempo Real</span>
-              <span class="border border-[#292d30] px-2.5 py-1 rounded-[6px]">Sin registros</span>
-              <span class="border border-[#292d30] px-2.5 py-1 rounded-[6px] text-[#38bdf8]">Zero Friction</span>
-            </div>
-          </div>
-
-          <!-- ÚNICO BOTÓN VISITAR SITIO EN VIVO -->
-          <div class="p-8 pt-0">
-            <a href="https://splitealo.site" target="_blank" rel="noopener noreferrer" class="btn-resend-primary w-full group/btn" aria-label="Ver Splitealo en vivo">
+            <a href="https://splitealo.site" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
               <span>Visitar aplicación en vivo</span>
-              <span class="text-[#38bdf8] group-hover/btn:translate-x-1 transition-transform">→</span>
+              <span class="text-cyan-accent" aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
@@ -300,262 +268,211 @@
       </div>
     </section>
 
-    <!-- ======================================================================
-         COMPARATIVA TÉCNICA RESEND STYLE (Diff Terminal + Velocímetro Animado)
-         ====================================================================== -->
-    <section id="comparativa" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-[#292d30]">
-      
-      <div class="mb-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <span class="text-xs font-mono text-[#38bdf8] uppercase tracking-wider">// Benchmark de Ingeniería</span>
-          <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-[-0.02em] mt-2 text-balance">
-            Código Puro vs. Plantilla Genérica.
+    <!-- ====================================================================
+         COMPARATIVA — diff
+         ==================================================================== -->
+    <section id="comparativa" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-graphite" aria-labelledby="comparativa-title">
+
+      <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div class="max-w-xl">
+          <span class="section-kicker">Benchmark</span>
+          <h2 id="comparativa-title" class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.03em] mt-3 text-balance">
+            Código puro vs. plantilla genérica.
           </h2>
-          <p class="text-[#a1a4a5] text-base mt-2 max-w-xl text-pretty">
-            La diferencia entre una base técnica artesanal optimizada a mano y el ecosistema tradicional sobrecargado de plugins.
+          <p class="text-ash text-base mt-3 text-pretty">
+            Una base optimizada a mano contra el ecosistema tradicional sobrecargado de plugins.
           </p>
         </div>
 
-        <!-- Velocímetro Animado Interactivo -->
-        <div class="p-4 rounded-[12px] bg-[#050608] border border-[#292d30] flex items-center gap-4 neon-card-hover shrink-0">
-          <div class="speedometer-container">
-            <svg class="speedometer-svg" viewBox="0 0 140 75">
-              <path d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke="#292d30" stroke-width="8" stroke-linecap="round"/>
-              <path class="speed-arc-glow" d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke="#0070f3" stroke-width="8" stroke-linecap="round"/>
-              <!-- Aguja animada que acelera a 0.4s -->
-              <g id="speed-needle" class="speed-needle" style="transform: rotate(-80deg);">
-                <line x1="70" y1="70" x2="70" y2="24" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
-                <circle cx="70" cy="70" r="6" fill="#00e5ff"/>
-              </g>
-            </svg>
-          </div>
-          <div class="space-y-1">
-            <div class="text-[11px] font-mono text-[#38bdf8]">VELOCIDAD DE APERTURA</div>
-            <div id="speed-counter" class="text-3xl font-bold font-mono text-white">0.4s</div>
+        <div id="speedometer" class="speedometer p-4 pr-6 rounded-2xl bg-[#050608] border border-graphite flex items-center gap-4 shrink-0 self-start md:self-auto">
+          <svg viewBox="0 0 140 75" class="w-[120px] h-[66px] overflow-visible" aria-hidden="true">
+            <path d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke="#292d30" stroke-width="8" stroke-linecap="round"/>
+            <path class="speed-arc" d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke="#0070f3" stroke-width="8" stroke-linecap="round"/>
+            <g class="speed-needle">
+              <line x1="70" y1="70" x2="70" y2="24" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="70" cy="70" r="6" fill="#00e5ff"/>
+            </g>
+          </svg>
+          <div>
+            <p class="text-[11px] font-mono text-cyan-accent">Velocidad de apertura</p>
+            <p class="text-3xl font-semibold font-mono text-white tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
           </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- Terminal Izquierda: WordPress / Plantilla -->
-        <div class="terminal-window neon-card-hover">
-          <div class="terminal-header">
-            <span class="text-xs font-mono text-[#ff9592]">✕ template-wordpress.log</span>
-            <span class="text-xs font-mono text-[#a1a4a5]">4.8s de carga</span>
+      <div class="diff">
+        <div class="diff-head">
+          <span><span class="text-white">git diff</span> plantilla-wordpress codigo-puro</span>
+          <span><span class="text-[#ff9592]">−3</span> <span class="text-neon-blue">+3</span></span>
+        </div>
+        <div class="diff-cols">
+          <div class="diff-col">
+            <div class="diff-file"><span class="text-[#ff9592]">✕ plantilla-wordpress</span><span class="text-ash">4.8s de carga</span></div>
+            <div class="diff-row comment"><span class="ln">1</span><span class="sign"></span><span>// Problemas típicos de una plantilla</span></div>
+            <div class="diff-row del"><span class="ln">2</span><span class="sign">−</span><span><strong>Carga lenta (4 a 6s):</strong> decenas de plugins sumando peticiones y frenando el celular.</span></div>
+            <div class="diff-row del"><span class="ln">3</span><span class="sign">−</span><span><strong>Vulnerabilidades periódicas:</strong> código desactualizado y riesgo de rotura en cada update.</span></div>
+            <div class="diff-row del"><span class="ln">4</span><span class="sign">−</span><span><strong>Fuga de clientes:</strong> más de la mitad de las visitas en celular abandona si la web tarda más de 3s.</span></div>
           </div>
-          <div class="p-6 font-mono text-xs text-[#a1a4a5] space-y-4">
-            <div class="text-[#ff9592]">// Problemas comunes de plantillas tradicionales:</div>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-2">
-                <span class="text-[#ff9592]">-</span>
-                <span><strong>Carga lenta (4 a 6s):</strong> 35 plugins sobrecargando peticiones HTTP y ralentizando el móvil.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#ff9592]">-</span>
-                <span><strong>Vulnerabilidades periódicas:</strong> Código obsoleto y riesgo constante de rotura tras actualizaciones.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#ff9592]">-</span>
-                <span><strong>Fuga de clientes:</strong> El 53% de los usuarios abandona antes de ver el contenido por lentitud.</span>
-              </li>
-            </ul>
+          <div class="diff-col">
+            <div class="diff-file"><span class="text-neon-blue">✓ codigo-puro</span><span class="text-pulse-green">0.4s de carga</span></div>
+            <div class="diff-row comment"><span class="ln">1</span><span class="sign"></span><span>// Cómo trabajo yo</span></div>
+            <div class="diff-row add"><span class="ln">2</span><span class="sign">+</span><span><strong>Apertura instantánea:</strong> HTML semántico y CSS liviano, sin nada que sobre.</span></div>
+            <div class="diff-row add"><span class="ln">3</span><span class="sign">+</span><span><strong>Cero dependencias frágiles:</strong> no se rompe solo ni te ata a cuotas mensuales de plugins.</span></div>
+            <div class="diff-row add"><span class="ln">4</span><span class="sign">+</span><span><strong>Conversión directa:</strong> cada botón abre WhatsApp con el contexto de lo que te interesa.</span></div>
           </div>
         </div>
-
-        <!-- Terminal Derecha: Código Puro Resend Style -->
-        <div class="terminal-window neon-card-hover border-[#0070f3]/50">
-          <div class="terminal-header">
-            <span class="text-xs font-mono text-[#00e5ff]">✓ by.nicocieplak-pure.ts</span>
-            <span class="text-xs font-mono text-[#3ad389]">0.4s de carga</span>
-          </div>
-          <div class="p-6 font-mono text-xs text-[#f0f0f0] space-y-4">
-            <div class="text-[#38bdf8]">// Especificación con código puro:</div>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-2">
-                <span class="text-[#00e5ff]">+</span>
-                <span><strong>Apertura instantánea:</strong> HTML5 semántico y CSS compilado en &lt;&nbsp;30&nbsp;KB con respuesta inmediata.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#00e5ff]">+</span>
-                <span><strong>Cero dependencias frágiles:</strong> Código limpio que no se rompe solo ni exige pagar cuotas mensuales.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#00e5ff]">+</span>
-                <span><strong>Conversión nativa:</strong> Cada llamado a la acción dispara WhatsApp con contexto para cerrar la venta.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- ======================================================================
-         SERVICIOS RESEND CARDS (16px Radius + Neon Hover)
-         ====================================================================== -->
-    <section id="servicios" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-[#292d30]">
-      
-      <div class="mb-14">
-        <span class="text-xs font-mono text-[#38bdf8] uppercase tracking-wider">// Soluciones a Medida</span>
-        <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-[-0.02em] mt-2 text-balance">
-          Servicios especializados.
+    <!-- ====================================================================
+         SERVICIOS
+         ==================================================================== -->
+    <section id="servicios" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-graphite" aria-labelledby="servicios-title">
+
+      <div class="mb-12 max-w-xl">
+        <span class="section-kicker">Soluciones a medida</span>
+        <h2 id="servicios-title" class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.03em] mt-3 text-balance">
+          Qué puedo construir para vos.
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div class="resend-card neon-card-hover flex flex-col justify-between">
-          <div class="space-y-3">
-            <span class="text-xs font-mono text-[#38bdf8]">01 / Catálogo Digital</span>
-            <h3 class="text-xl font-semibold text-white">Menús & Catálogos QR</h3>
-            <p class="text-sm text-[#a1a4a5] leading-relaxed text-pretty">
-              Para gastronomía y showrooms. Visualización instantánea de la carta o catálogo de productos con fotos en alta definición y pedidos automáticos formateados a WhatsApp.
-            </p>
-          </div>
-          <div class="pt-8">
-            <a href="https://wa.me/5493410000000" class="btn-resend-primary w-full text-xs" data-wa-service="Menú o Catálogo Digital QR">
-              <span>Cotizar Catálogo QR →</span>
-            </a>
-          </div>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5" data-spotlight>
 
-        <div class="resend-card neon-card-hover flex flex-col justify-between">
-          <div class="space-y-3">
-            <span class="text-xs font-mono text-[#3ad389]">02 / Conversión Pura</span>
-            <h3 class="text-xl font-semibold text-white">Landing Pages</h3>
-            <p class="text-sm text-[#a1a4a5] leading-relaxed text-pretty">
-              Para profesionales, servicios y lanzamientos. Arquitectura psicológica de venta, velocidad récord y llamados a la acción precisos para captar clientes calificados.
+        <article class="spot-card" style="--accent: 56, 189, 248">
+          <div class="space-y-4">
+            <span class="spot-num" aria-hidden="true">01</span>
+            <h3 class="text-xl font-semibold text-white">Menús y catálogos QR</h3>
+            <p class="text-sm text-ash leading-relaxed text-pretty">
+              Para gastronomía y showrooms. La carta o el catálogo se ve al instante, con fotos en alta calidad y pedidos que llegan ordenados a tu WhatsApp.
             </p>
           </div>
           <div class="pt-8">
-            <a href="https://wa.me/5493410000000" class="btn-resend-primary w-full text-xs border-[#3ad389]/40" data-wa-service="Landing Page de Alta Conversión">
-              <span>Cotizar Landing Page →</span>
+            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="Menú o catálogo digital QR">
+              <span>Cotizar catálogo QR</span><span class="text-cyan-accent" aria-hidden="true">→</span>
             </a>
           </div>
-        </div>
+        </article>
 
-        <div class="resend-card neon-card-hover flex flex-col justify-between">
-          <div class="space-y-3">
-            <span class="text-xs font-mono text-[#00e5ff]">03 / Arquitectura a Medida</span>
-            <h3 class="text-xl font-semibold text-white">Plataformas Web</h3>
-            <p class="text-sm text-[#a1a4a5] leading-relaxed text-pretty">
-              Para requerimientos interactivos que las plantillas no pueden resolver: calculadoras dinámicas, cotizadores online, pasarelas de pago y lógica en tiempo real.
+        <article class="spot-card" style="--accent: 58, 211, 137">
+          <div class="space-y-4">
+            <span class="spot-num" aria-hidden="true">02</span>
+            <h3 class="text-xl font-semibold text-white">Landing pages</h3>
+            <p class="text-sm text-ash leading-relaxed text-pretty">
+              Para profesionales, servicios y lanzamientos. Estructura pensada para vender, velocidad récord y llamados a la acción claros para captar clientes.
             </p>
           </div>
           <div class="pt-8">
-            <a href="https://wa.me/5493410000000" class="btn-resend-primary w-full text-xs" data-wa-service="Plataforma Web a Medida">
-              <span>Cotizar Plataforma →</span>
+            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="Landing page">
+              <span>Cotizar landing page</span><span class="text-pulse-green" aria-hidden="true">→</span>
             </a>
           </div>
-        </div>
+        </article>
+
+        <article class="spot-card" style="--accent: 0, 229, 255">
+          <div class="space-y-4">
+            <span class="spot-num" aria-hidden="true">03</span>
+            <h3 class="text-xl font-semibold text-white">Plataformas web</h3>
+            <p class="text-sm text-ash leading-relaxed text-pretty">
+              Para lo que una plantilla no puede resolver: calculadoras, cotizadores online, pagos y lógica en tiempo real.
+            </p>
+          </div>
+          <div class="pt-8">
+            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="Plataforma web a medida">
+              <span>Cotizar plataforma</span><span class="text-neon-blue" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
 
       </div>
     </section>
 
-    <!-- ======================================================================
-         METODOLOGÍA (Paso 01, 02, 03)
-         ====================================================================== -->
-    <section id="metodologia" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-[#292d30]">
-      
-      <div class="mb-14">
-        <span class="text-xs font-mono text-[#38bdf8] uppercase tracking-wider">// Proceso de Trabajo</span>
-        <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-[-0.02em] mt-2 text-balance">
-          Tres etapas transparentes.
+    <!-- ====================================================================
+         METODOLOGÍA
+         ==================================================================== -->
+    <section id="metodologia" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-graphite" aria-labelledby="metodologia-title">
+
+      <div class="mb-14 max-w-xl">
+        <span class="section-kicker">Proceso de trabajo</span>
+        <h2 id="metodologia-title" class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.03em] mt-3 text-balance">
+          Tres etapas, sin sorpresas.
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div class="resend-card neon-card-hover">
-          <p class="text-xs font-mono text-[#0070f3]">Fase 01</p>
-          <h3 class="text-lg font-semibold text-white mt-1">Diagnóstico & Dirección de Arte</h3>
-          <p class="text-sm text-[#a1a4a5] mt-2 leading-relaxed text-pretty">
-            Analizamos tu modelo de negocio, definimos la estructura exacta y acordamos la identidad visual antes de codificar.
+      <ol class="timeline">
+        <li style="--dot: #0070f3">
+          <p class="text-xs font-mono text-cyan-accent">Fase 01</p>
+          <h3 class="text-lg font-semibold text-white mt-1">Diagnóstico y dirección de arte</h3>
+          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm">
+            Analizamos tu negocio, definimos la estructura y acordamos la identidad visual antes de escribir una línea de código.
           </p>
-        </div>
-
-        <div class="resend-card neon-card-hover">
-          <p class="text-xs font-mono text-[#38bdf8]">Fase 02</p>
-          <h3 class="text-lg font-semibold text-white mt-1">Desarrollo con Código Puro</h3>
-          <p class="text-sm text-[#a1a4a5] mt-2 leading-relaxed text-pretty">
-            Construcción línea por línea asegurando rendimiento instantáneo, compatibilidad total y optimización extrema.
+        </li>
+        <li style="--dot: #38bdf8">
+          <p class="text-xs font-mono text-cyan-accent">Fase 02</p>
+          <h3 class="text-lg font-semibold text-white mt-1">Desarrollo con código puro</h3>
+          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm">
+            Construcción a mano, cuidando velocidad, compatibilidad con todos los dispositivos y cada detalle de la experiencia.
           </p>
-        </div>
-
-        <div class="resend-card neon-card-hover">
-          <p class="text-xs font-mono text-[#3ad389]">Fase 03</p>
-          <h3 class="text-lg font-semibold text-white mt-1">Lanzamiento & Conexión WhatsApp</h3>
-          <p class="text-sm text-[#a1a4a5] mt-2 leading-relaxed text-pretty">
-            Conexión de dominio, auditoría de velocidad en vivo y activación de los canales de conversión directa.
+        </li>
+        <li style="--dot: #3ad389">
+          <p class="text-xs font-mono text-pulse-green">Fase 03</p>
+          <h3 class="text-lg font-semibold text-white mt-1">Lanzamiento y conexión a WhatsApp</h3>
+          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm">
+            Dominio conectado, prueba de velocidad en vivo y los canales de contacto activos desde el primer día.
           </p>
-        </div>
-
-      </div>
+        </li>
+      </ol>
     </section>
 
-    <!-- ======================================================================
-         BLOQUE FINAL RESEND STYLE
-         ====================================================================== -->
-    <section class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-[#292d30]">
-      <div class="terminal-window neon-card-hover p-8 sm:p-14 text-center">
-        <div class="max-w-xl mx-auto space-y-6">
-          
-          <span class="resend-pill mx-auto">
-            <span class="resend-dot-green"></span>
-            <span>Atención 1 a 1 directa</span>
+    <!-- ====================================================================
+         CTA FINAL
+         ==================================================================== -->
+    <section class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-24 lg:pb-32" aria-labelledby="cta-title">
+      <div class="final-cta px-6 py-16 sm:px-14 sm:py-24 text-center">
+        <div class="max-w-2xl mx-auto space-y-6">
+
+          <span class="inline-flex items-center gap-2 px-3 py-1 border border-graphite rounded-[6px] font-mono text-xs text-ash bg-white/[0.02]">
+            <span class="live-dot" aria-hidden="true"></span>
+            Atención 1 a 1, directo conmigo
           </span>
 
-          <h2 class="text-3xl sm:text-5xl font-semibold text-white tracking-[-0.02em] text-balance">
+          <h2 id="cta-title" class="text-4xl sm:text-6xl font-semibold text-white tracking-[-0.035em] leading-[1.02] text-balance">
             ¿Tenés un proyecto en mente?
           </h2>
 
-          <p class="text-[#a1a4a5] text-base leading-relaxed text-pretty">
-            Sin intermediarios ni formularios burocráticos. Me contás tu idea por WhatsApp y te doy una propuesta a medida.
+          <p class="text-bone/80 text-base sm:text-lg leading-relaxed text-pretty max-w-lg mx-auto">
+            Sin intermediarios ni formularios eternos. Me contás tu idea por WhatsApp y te paso una propuesta a medida.
           </p>
 
-          <div class="pt-4 flex justify-center">
-            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn-resend-primary text-base py-4 px-8 border-white hover:border-[#3ad389]" data-wa-service="Consulta Directa">
-              <svg class="w-7 h-7 shrink-0 fill-[#3ad389]" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.288.043.088.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.203c.044.072.044.419-.1.824z"/>
-              </svg>
-              <span>Escribirme ahora por WhatsApp</span>
+          <div class="pt-2 flex justify-center">
+            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-wa !text-base !py-4 !px-8" data-wa="Consulta directa">
+              <svg aria-hidden="true"><use href="#i-wa"/></svg>
+              <span>Escribirme por WhatsApp</span>
             </a>
           </div>
 
-          <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs font-mono text-[#a1a4a5]">
-            <span>✓ Respuesta rápida</span>
-            <span>✓ Presupuesto sin compromiso</span>
-            <span>✓ Trato directo</span>
-          </div>
-
+          <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-2 text-xs font-mono text-ash">
+            <li><span class="text-pulse-green" aria-hidden="true">✓</span> Respuesta rápida</li>
+            <li><span class="text-pulse-green" aria-hidden="true">✓</span> Presupuesto sin compromiso</li>
+            <li><span class="text-pulse-green" aria-hidden="true">✓</span> Trato directo</li>
+          </ul>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ========================================================================
-       FOOTER RESEND MINIMAL — by.nicocieplak
-       ======================================================================== -->
-  <footer class="border-t border-[#292d30] py-8 text-xs text-[#a1a4a5] font-mono">
+  <footer class="border-t border-graphite py-8 text-xs text-ash font-mono" style="padding-bottom: max(2rem, env(safe-area-inset-bottom))">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="text-white font-medium">by.nicocieplak</span>
-        <span>—</span>
-        <span>Código puro a medida</span>
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="#proyectos" class="hover:text-white transition-colors">Proyectos</a>
-        <a href="#comparativa" class="hover:text-white transition-colors">Rendimiento</a>
-        <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
-      </div>
-      <div>
-        Argentina &copy; 2026
-      </div>
+      <p><span class="text-white font-medium">by.nicocieplak</span> — código puro a medida</p>
+      <nav class="flex items-center gap-2" aria-label="Pie de página">
+        <a href="#proyectos" class="px-2 min-h-[44px] inline-flex items-center hover:text-white transition-colors">Proyectos</a>
+        <a href="#comparativa" class="px-2 min-h-[44px] inline-flex items-center hover:text-white transition-colors">Rendimiento</a>
+        <a href="#servicios" class="px-2 min-h-[44px] inline-flex items-center hover:text-white transition-colors">Servicios</a>
+      </nav>
+      <p>Argentina © <span id="year">2026</span></p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>

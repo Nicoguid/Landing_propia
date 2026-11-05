@@ -9,6 +9,11 @@ const CONFIG = {
   brandName: 'by.nicocieplak',
 };
 
+// Cambiá este valor cada vez que subas cambios: obliga al navegador a bajar
+// la versión nueva de la cabeza 3D en lugar de usar la que tiene guardada.
+// (Usá el mismo valor en los ?v= de index.html)
+const ASSET_VERSION = '20261105c';
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -138,7 +143,7 @@ function loadHeroHead() {
   // con doble clic (file://), donde el navegador bloquea los import().
   const start = () => {
     const script = document.createElement('script');
-    script.src = 'assets/js/hero-head.min.js';
+    script.src = `assets/js/hero-head.min.js?v=${ASSET_VERSION}`;
     script.async = true;
     script.onload = () => {
       try {

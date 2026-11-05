@@ -262,7 +262,10 @@ const fragmentShader = /* glsl */ `
 /* ------------------------------------------------------------------ */
 export function createParticleHead(container, options = {}) {
   const o = { ...DEFAULTS, ...options };
+  // Si el sistema tiene "reducir movimiento" (en Windows: Efectos de animación desactivados)
+  // se saca solo lo automático (entrada y vaivén). Lo que mueve el usuario con el mouse sigue andando.
   const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) console.info('[particle-head] "Reducir movimiento" activo: sin animación de entrada ni vaivén automático.');
   const isMobile = window.matchMedia?.('(pointer: coarse)').matches;
   const count = isMobile ? Math.round(o.count * 0.55) : o.count;
 
@@ -394,7 +397,7 @@ export function createParticleHead(container, options = {}) {
     const dt = Math.min(clock.getDelta(), 0.05);
     const t = clock.elapsedTime;
     if (sampler.filled < sampler.count) growGeometry();
-    uniforms.uTime.value = reduceMotion ? 0 : t;
+    uniforms.uTime.value = t;
 
     if (uniforms.uProgress.value < 1) {
       uniforms.uProgress.value = Math.min(1, uniforms.uProgress.value + dt / 2.2);
@@ -402,8 +405,9 @@ export function createParticleHead(container, options = {}) {
 
     // Hacia dónde mira: al cursor, o un vaivén suave si no hay mouse (mobile)
     const idle = performance.now() - lastMove > 4000;
-    const targetX = idle ? Math.sin(t * 0.4) * 0.25 : pointer.x * 0.6;
-    const targetY = idle ? Math.sin(t * 0.3) * 0.06 : -pointer.y * 0.3;
+    const sway = idle && !reduceMotion;
+    const targetX = sway ? Math.sin(t * 0.4) * 0.25 : idle ? 0 : pointer.x * 0.6;
+    const targetY = sway ? Math.sin(t * 0.3) * 0.06 : idle ? 0 : -pointer.y * 0.3;
     const k = 1 - Math.exp(-dt * 3.5);
     uniforms.uLook.value.x += (targetX * o.lookStrength - uniforms.uLook.value.x) * k;
     uniforms.uLook.value.y += (targetY * o.lookStrength - uniforms.uLook.value.y) * k;
@@ -413,7 +417,7 @@ export function createParticleHead(container, options = {}) {
     mouseSmooth.x += (pointer.x - mouseSmooth.x) * km;
     mouseSmooth.y += (pointer.y - mouseSmooth.y) * km;
     uniforms.uMouse.value.copy(mouseSmooth);
-    const sTarget = pointerInside && !reduceMotion ? 1 : 0;
+    const sTarget = pointerInside ? 1 : 0;
     uniforms.uMouseStrength.value += (sTarget - uniforms.uMouseStrength.value) * (1 - Math.exp(-dt * 4));
 
     renderer.render(scene, camera);

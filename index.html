@@ -7,13 +7,15 @@
   <title>by.nicocieplak — Desarrollo web a medida con código puro</title>
   <meta name="description" content="Diseño y desarrollo de sitios web y plataformas a medida con código puro. Carga instantánea, diseño exclusivo sin plantillas y conexión directa a WhatsApp.">
   <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://artesanal.dev/">
 
   <!-- Open Graph / redes -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_AR">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:url" content="https://artesanal.dev/">
-  <meta property="og:title" content="Webs hechas a medida — by.nicocieplak">
+  <meta property="og:title" content="Diseño webs que no se olvidan — by.nicocieplak">
   <meta property="og:description" content="Sitios web veloces, diseño exclusivo y conexión directa a WhatsApp para tu negocio.">
   <meta property="og:image" content="https://artesanal.dev/assets/images/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -22,12 +24,12 @@
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 
   <!-- Fuentes propias: se precargan para que el título no "salte" -->
-  <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/geist-mono-500.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Tailwind compilado (npm run build) + estilos propios -->
-  <link rel="stylesheet" href="assets/css/tailwind.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/tailwind.css?v=20261105g">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261105g">
 
   <script type="application/ld+json">
   {
@@ -37,6 +39,7 @@
     "description": "Desarrollo de sitios web y plataformas a medida con código puro.",
     "url": "https://artesanal.dev/",
     "areaServed": "AR",
+    "availableLanguage": ["es", "en"],
     "image": "https://artesanal.dev/assets/images/og-image.jpg"
   }
   </script>
@@ -48,14 +51,19 @@
     <symbol id="i-wa" viewBox="0 0 24 24">
       <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.288.043.088.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.203c.044.072.044.419-.1.824z"/>
     </symbol>
+    <symbol id="i-wa-full" viewBox="0 0 32 32">
+      <path d="M16.004 3C8.82 3 3 8.82 3 16c0 2.294.6 4.535 1.74 6.51L3 29l6.66-1.71A12.95 12.95 0 0 0 16.004 29C23.18 29 29 23.18 29 16S23.18 3 16.004 3zm0 23.8c-2.03 0-4.02-.55-5.75-1.58l-.41-.25-3.95 1.01 1.05-3.85-.27-.4A10.73 10.73 0 0 1 5.2 16c0-5.96 4.84-10.8 10.8-10.8 5.96 0 10.8 4.84 10.8 10.8 0 5.96-4.84 10.8-10.8 10.8zm5.93-8.08c-.32-.16-1.92-.95-2.22-1.06-.3-.11-.51-.16-.73.16-.22.32-.84 1.06-1.03 1.28-.19.22-.38.24-.7.08-.32-.16-1.37-.5-2.6-1.6-.96-.86-1.61-1.92-1.8-2.24-.19-.32-.02-.5.14-.66.15-.14.32-.38.48-.57.16-.19.21-.32.32-.54.11-.22.05-.4-.03-.57-.08-.16-.73-1.76-1-2.4-.26-.63-.53-.55-.73-.56h-.62c-.22 0-.57.08-.86.4-.3.32-1.13 1.1-1.13 2.69 0 1.58 1.16 3.12 1.32 3.33.16.22 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.25 1.48.21 2.03.13.62-.09 1.92-.78 2.19-1.54.27-.76.27-1.41.19-1.54-.08-.14-.3-.22-.62-.38z"/>
+    </symbol>
     <symbol id="i-lock" viewBox="0 0 24 24">
       <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
     </symbol>
+    <symbol id="i-check" viewBox="0 0 20 20">
+      <circle cx="10" cy="10" r="10" fill="currentColor"/>
+      <path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" style="stroke: var(--on-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
   </svg>
 
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-semibold focus:rounded">
-    Saltar al contenido principal
-  </a>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-semibold focus:rounded" data-i18n="skip">Saltar al contenido principal</a>
 
   <!-- ======================================================================
        HEADER
@@ -63,30 +71,32 @@
   <header class="site-header" id="site-header">
     <div class="header-container">
 
-      <a href="#top" class="flex items-center gap-2.5 min-h-[44px] group" aria-label="by.nicocieplak, volver al inicio">
-        <span class="w-7 h-7 rounded-[6px] bg-black border border-graphite group-hover:border-cyan-accent flex items-center justify-center font-mono font-semibold text-xs text-cyan-accent transition-colors" aria-hidden="true">/&gt;</span>
-        <span class="font-mono font-semibold text-sm tracking-tight text-white">by.nicocieplak</span>
+      <a href="#top" class="header-logo flex items-center gap-2.5 min-h-[44px] group" aria-label="by.nicocieplak, volver al inicio" data-i18n-attr="aria-label:logoLabel">
+        <span class="w-7 h-7 rounded-[8px] bg-bg border border-line group-hover:border-accent flex items-center justify-center font-mono font-semibold text-xs text-accent transition-colors" aria-hidden="true">/&gt;</span>
+        <span class="font-mono font-semibold text-sm tracking-tight text-fg" translate="no">by.nicocieplak</span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-1" aria-label="Navegación principal">
-        <a href="#proyectos" class="nav-link">Proyectos</a>
-        <a href="#comparativa" class="nav-link">Rendimiento</a>
-        <a href="#servicios" class="nav-link">Servicios</a>
-        <a href="#metodologia" class="nav-link">Metodología</a>
+      <nav class="header-nav hidden lg:flex items-center gap-1" aria-label="Navegación principal" data-i18n-attr="aria-label:navLabel">
+        <a href="#proyectos" class="nav-link" data-i18n="nav.projects">Proyectos</a>
+        <a href="#servicios" class="nav-link" data-i18n="nav.services">Servicios</a>
+        <a href="#metodologia" class="nav-link" data-i18n="nav.process">Proceso</a>
+        <a href="#faq" class="nav-link" data-i18n="nav.faq">Preguntas</a>
+        <a href="#presupuesto" class="nav-link" data-i18n="nav.quote">Presupuesto</a>
       </nav>
 
-      <div class="flex items-center gap-3">
-        <div class="hidden lg:flex items-center gap-2.5 text-xs font-mono text-ash mr-1">
-          <span class="live-dot" aria-hidden="true"></span>
-          <span>Disponible para proyectos</span>
+      <div class="header-actions flex items-center gap-2 sm:gap-3">
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true" lang="es">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
         </div>
 
-        <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline !px-3 sm:!px-4" data-wa="Consulta general">
-          <svg class="w-5 h-5 fill-pulse-green" aria-hidden="true"><use href="#i-wa"/></svg>
-          <span class="sr-only sm:not-sr-only">WhatsApp</span>
+
+        <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm !hidden sm:!inline-flex" data-wa="general">
+          <svg class="w-5 h-5 fill-ok" aria-hidden="true"><use href="#i-wa"/></svg>
+          <span class="sr-only sm:not-sr-only" data-i18n="header.cta">Escribime</span>
         </a>
 
-        <button id="menu-toggle" type="button" class="md:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-[6px] text-ash hover:text-white active:bg-white/5" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-drawer">
+        <button id="menu-toggle" type="button" class="lg:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full text-muted hover:text-fg active:bg-surface" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-drawer">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/>
           </svg>
@@ -95,25 +105,26 @@
     </div>
   </header>
 
-  <div id="mobile-drawer" class="mobile-drawer md:hidden" aria-label="Menú móvil">
-    <nav class="flex flex-col gap-1" aria-label="Navegación móvil">
-      <a href="#proyectos" class="mobile-link">Proyectos</a>
-      <a href="#comparativa" class="mobile-link">Rendimiento</a>
-      <a href="#servicios" class="mobile-link">Servicios</a>
-      <a href="#metodologia" class="mobile-link">Metodología</a>
+  <div id="mobile-drawer" class="mobile-drawer lg:hidden">
+    <nav class="flex flex-col gap-1" aria-label="Navegación móvil" data-i18n-attr="aria-label:navMobileLabel">
+      <a href="#proyectos" class="mobile-link" data-i18n="nav.projects">Proyectos</a>
+      <a href="#servicios" class="mobile-link" data-i18n="nav.services">Servicios</a>
+      <a href="#metodologia" class="mobile-link" data-i18n="nav.process">Proceso</a>
+      <a href="#faq" class="mobile-link" data-i18n="nav.faq">Preguntas</a>
+      <a href="#presupuesto" class="mobile-link" data-i18n="nav.quote">Presupuesto</a>
     </nav>
   </div>
 
   <main id="main-content">
 
     <!-- ====================================================================
-         HERO — título gigante + cabeza 3D de partículas
+         HERO — título gigante en dos colores + cabeza 3D de partículas
          ==================================================================== -->
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
 
-      <h1 id="hero-title" class="hero-title">Hecho a medida<span class="sr-only">: diseño y desarrollo web para tu negocio, por by.nicocieplak</span></h1>
+      <h1 id="hero-title" class="hero-title" data-i18n-html="hero.title"><span class="hero-line hero-line--1">Diseño webs que</span> <span class="hero-line hero-line--2">no se olvidan</span></h1>
 
       <!-- Acá se monta el canvas (assets/js/hero-head.min.js) -->
       <div id="hero-head" class="hero-head" aria-hidden="true"></div>
@@ -122,28 +133,25 @@
       <div class="hero-bottom w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-10">
 
-          <div class="max-w-[440px] space-y-3">
-            <div class="flex items-center gap-2.5 text-xs font-mono text-ash lg:hidden">
-              <span class="live-dot" aria-hidden="true"></span>
-              <span>Disponible para proyectos</span>
-            </div>
-            <p class="text-xl sm:text-2xl font-medium text-white tracking-[-0.02em] leading-snug text-balance">
-              Tu negocio merece una web que consiga clientes mientras dormís.
+          <div class="max-w-[460px] space-y-4">
+            <p class="text-xl sm:text-2xl font-medium text-fg tracking-[-0.03em] leading-snug text-balance" data-i18n-html="hero.lead">
+              Tu negocio merece una web que <span class="tone">consiga clientes mientras dormís.</span>
             </p>
-            <p class="text-sm sm:text-base text-ash leading-relaxed text-pretty">
-              Diseño único, carga al instante y cada botón te trae consultas directo a WhatsApp. Sin plantillas, sin plugins, sin vueltas.
-            </p>
+            <ul class="check-list">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="check.1">Presupuesto sin compromiso</span></li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="check.2">Respuesta rápida</span></li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="check.3">Trato directo, sin intermediarios</span></li>
+            </ul>
           </div>
 
           <div class="flex flex-wrap items-center gap-3">
-            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-wa" data-wa="Cotización de web a medida">
+            <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="btn btn-wa" data-wa="web">
               <svg aria-hidden="true"><use href="#i-wa"/></svg>
-              <span>Quiero mi web</span>
+              <span data-i18n="hero.cta">Quiero mi web</span>
             </a>
-            <a href="#proyectos" class="btn btn-ghost">
-              <span>Ver proyectos</span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
+            <a href="#presupuesto" class="btn btn-ghost">
+              <span data-i18n="hero.cta2">Armar mi pedido</span>
+              </a>
           </div>
 
         </div>
@@ -153,34 +161,34 @@
     </section>
 
     <!-- Tira de métricas -->
-    <section aria-label="Resultados" class="border-y border-graphite bg-black">
+    <section aria-label="Resultados" data-i18n-attr="aria-label:metrics.label" class="border-y border-line bg-bg">
       <div class="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-3 font-mono">
         <div class="metric">
-          <p class="text-4xl font-semibold text-white tabular-nums" data-counter="3" data-suffix="x">3x</p>
-          <p class="text-ash mt-1 text-xs">más consultas por WhatsApp</p>
+          <p class="text-4xl font-semibold text-fg tabular-nums" data-counter="3" data-suffix="x">3x</p>
+          <p class="text-muted mt-1 text-xs" data-i18n="metrics.1">más consultas por WhatsApp</p>
         </div>
         <div class="metric">
-          <p class="text-4xl font-semibold text-cyan-accent tabular-nums" data-counter="100" data-suffix="%">100%</p>
-          <p class="text-ash mt-1 text-xs">diseño propio, cero plantillas</p>
+          <p class="text-4xl font-semibold text-accent tabular-nums" data-counter="100" data-suffix="%">100%</p>
+          <p class="text-muted mt-1 text-xs" data-i18n="metrics.2">diseño propio, cero plantillas</p>
         </div>
         <div class="metric">
-          <p class="text-4xl font-semibold text-pulse-green tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
-          <p class="text-ash mt-1 text-xs">tiempo de carga</p>
+          <p class="text-4xl font-semibold text-ok tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
+          <p class="text-muted mt-1 text-xs" data-i18n="metrics.3">tiempo de carga</p>
         </div>
       </div>
     </section>
 
     <!-- ====================================================================
-         PROYECTOS
+         (01) PROYECTOS
          ==================================================================== -->
     <section id="proyectos" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32" aria-labelledby="proyectos-title">
 
       <div class="mb-16 max-w-2xl">
-        <span class="section-kicker">Proyectos en producción</span>
-        <h2 id="proyectos-title" class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.03em] mt-3 text-balance">
-          Casos reales, desarrollados desde cero.
+        <p class="section-kicker"><span data-i18n="projects.kicker">Trabajos reales</span></p>
+        <h2 id="proyectos-title" class="section-title" data-reveal data-i18n-html="projects.title">
+          Proyectos que ya están <span class="tone">en producción.</span>
         </h2>
-        <p class="text-ash text-base mt-3 text-pretty">
+        <p class="text-muted text-base mt-4 text-pretty" data-i18n="projects.sub">
           Productos activos que atienden clientes todos los días.
         </p>
       </div>
@@ -189,78 +197,80 @@
 
         <!-- Caso 1: Dorear -->
         <article class="case grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <a href="https://dorear.com.ar" target="_blank" rel="noopener noreferrer" class="lg:col-span-7 block rounded-xl" aria-label="Abrir dorear.com.ar en una pestaña nueva">
-            <div class="browser-window">
-              <div class="browser-bar">
-                <div class="traffic-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-                <span class="address-pill"><svg aria-hidden="true"><use href="#i-lock"/></svg>dorear.com.ar</span>
-              </div>
-              <div class="browser-viewport">
-                <picture>
-                  <source srcset="assets/images/dorear-preview.webp" type="image/webp">
-                  <img src="assets/images/dorear-preview.png" alt="Página de Dorear con el menú ejecutivo del día y las categorías de la carta" width="800" height="600" loading="lazy" decoding="async">
-                </picture>
-              </div>
+          <div class="lg:col-span-7 browser-window">
+            <div class="browser-bar">
+              <div class="traffic-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <a href="https://dorear.com.ar" target="_blank" rel="noopener noreferrer" class="address-pill" aria-label="Abrir dorear.com.ar en una pestaña nueva" data-i18n-attr="aria-label:projects.open1"><svg aria-hidden="true"><use href="#i-lock"/></svg>dorear.com.ar</a>
+              <button type="button" class="video-toggle" aria-pressed="false" aria-label="Pausar video" data-paused="false">
+                <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg>
+              </button>
             </div>
-          </a>
+            <div class="browser-viewport">
+              <video class="case-video" muted loop playsinline preload="metadata" width="960" height="720"
+                     poster="assets/images/dorear-poster.webp" aria-label="Recorrido en video por la carta digital de Dorear" data-i18n-attr="aria-label:projects.video1">
+                <source src="assets/video/dorear.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
 
           <div class="lg:col-span-5 space-y-5">
-            <div class="flex items-end justify-between gap-4">
-              <span class="case-index" aria-hidden="true">01</span>
-              <span class="text-xs font-mono text-pulse-green flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span>En producción</span>
+            <div class="flex items-center gap-4">
+              <span class="text-xs font-mono text-ok flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span><span data-i18n="projects.live">En producción</span></span>
             </div>
-            <h3 class="text-3xl font-semibold text-white tracking-[-0.02em]">Dorear</h3>
-            <p class="font-mono text-xs text-cyan-accent">Catálogo digital QR · Gastronomía</p>
-            <p class="text-bone/90 leading-relaxed text-pretty">
+            <h3 class="text-3xl font-medium text-fg tracking-[-0.03em]" translate="no">Dorear</h3>
+            <p class="font-mono text-xs text-accent" data-i18n="projects.cat1">Catálogo digital QR · Gastronomía</p>
+            <p class="text-fg-soft leading-relaxed text-pretty" data-i18n="projects.desc1">
               Carta interactiva que se abre al instante escaneando el QR de la mesa. Reemplaza los PDFs pesados de 20&nbsp;MB y deja hacer pedidos directos por WhatsApp.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="tag text-white">Carga 0.3s</span>
-              <span class="tag">Sin PDFs</span>
-              <span class="tag text-pulse-green">Pedidos por WhatsApp</span>
+              <span class="tag text-fg" data-i18n="projects.tag1a">Carga 0.3s</span>
+              <span class="tag" data-i18n="projects.tag1b">Sin PDFs</span>
+              <span class="tag text-ok" data-i18n="projects.tag1c">Pedidos por WhatsApp</span>
             </div>
             <a href="https://dorear.com.ar" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-              <span>Visitar sitio en vivo</span>
-              <span class="text-cyan-accent" aria-hidden="true">↗</span>
+              <span data-i18n="projects.visit1">Visitar sitio en vivo</span>
+              <span class="text-accent" aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
 
         <!-- Caso 2: Splitealo -->
         <article class="case grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <a href="https://splitealo.site" target="_blank" rel="noopener noreferrer" class="lg:col-span-7 lg:order-2 block rounded-xl" aria-label="Abrir splitealo.site en una pestaña nueva">
-            <div class="browser-window">
-              <div class="browser-bar">
-                <div class="traffic-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-                <span class="address-pill"><svg aria-hidden="true"><use href="#i-lock"/></svg>splitealo.site</span>
-              </div>
-              <div class="browser-viewport">
-                <picture>
-                  <source srcset="assets/images/splitealo-preview.webp" type="image/webp">
-                  <img src="assets/images/splitealo-preview.png" alt="Portada de Splitealo: Spliteá la cuenta en segundos" width="800" height="600" loading="lazy" decoding="async">
-                </picture>
-              </div>
+          <div class="lg:col-span-7 lg:order-2 browser-window">
+            <div class="browser-bar">
+              <div class="traffic-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <a href="https://splitealo.site" target="_blank" rel="noopener noreferrer" class="address-pill" aria-label="Abrir splitealo.site en una pestaña nueva" data-i18n-attr="aria-label:projects.open2"><svg aria-hidden="true"><use href="#i-lock"/></svg>splitealo.site</a>
+              <button type="button" class="video-toggle" aria-pressed="false" aria-label="Pausar video" data-paused="false">
+                <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg>
+              </button>
             </div>
-          </a>
+            <div class="browser-viewport">
+              <video class="case-video" muted loop playsinline preload="metadata" width="960" height="720"
+                     poster="assets/images/splitealo-poster.webp" aria-label="Recorrido en video por la portada de Splitealo" data-i18n-attr="aria-label:projects.video2">
+                <source src="assets/video/splitealo.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
 
           <div class="lg:col-span-5 lg:order-1 space-y-5">
-            <div class="flex items-end justify-between gap-4">
-              <span class="case-index" aria-hidden="true">02</span>
-              <span class="text-xs font-mono text-pulse-green flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span>En producción</span>
+            <div class="flex items-center gap-4">
+              <span class="text-xs font-mono text-ok flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span><span data-i18n="projects.live">En producción</span></span>
             </div>
-            <h3 class="text-3xl font-semibold text-white tracking-[-0.02em]">Splitealo</h3>
-            <p class="font-mono text-xs text-cyan-accent">Web app · Gastos compartidos</p>
-            <p class="text-bone/90 leading-relaxed text-pretty">
+            <h3 class="text-3xl font-medium text-fg tracking-[-0.03em]" translate="no">Splitealo</h3>
+            <p class="font-mono text-xs text-accent" data-i18n="projects.cat2">Web app · Gastos compartidos</p>
+            <p class="text-fg-soft leading-relaxed text-pretty" data-i18n="projects.desc2">
               Divide la cuenta entre amigos en segundos, con cálculo en tiempo real. Sin registro y sin descargar nada: funciona directo desde el navegador.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="tag text-white">Tiempo real</span>
-              <span class="tag">Sin registro</span>
-              <span class="tag text-cyan-accent">Sin instalar apps</span>
+              <span class="tag text-fg" data-i18n="projects.tag2a">Tiempo real</span>
+              <span class="tag" data-i18n="projects.tag2b">Sin registro</span>
+              <span class="tag text-accent" data-i18n="projects.tag2c">Sin instalar apps</span>
             </div>
             <a href="https://splitealo.site" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-              <span>Visitar aplicación en vivo</span>
-              <span class="text-cyan-accent" aria-hidden="true">↗</span>
+              <span data-i18n="projects.visit2">Visitar aplicación en vivo</span>
+              <span class="text-accent" aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
@@ -269,154 +279,188 @@
     </section>
 
     <!-- ====================================================================
-         COMPARATIVA — diff
+         (02) COMPARATIVA — diff
          ==================================================================== -->
-    <section id="comparativa" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-graphite" aria-labelledby="comparativa-title">
+    <section id="comparativa" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-line" aria-labelledby="comparativa-title">
 
       <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div class="max-w-xl">
-          <span class="section-kicker">Benchmark</span>
-          <h2 id="comparativa-title" class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.03em] mt-3 text-balance">
-            Código puro vs. plantilla genérica.
+          <p class="section-kicker"><span data-i18n="bench.kicker">Rendimiento</span></p>
+          <h2 id="comparativa-title" class="section-title" data-reveal data-i18n-html="bench.title">
+            Código puro <span class="tone">vs. plantilla genérica.</span>
           </h2>
-          <p class="text-ash text-base mt-3 text-pretty">
+          <p class="text-muted text-base mt-4 text-pretty" data-i18n="bench.sub">
             Una base optimizada a mano contra el ecosistema tradicional sobrecargado de plugins.
           </p>
         </div>
 
-        <div id="speedometer" class="speedometer p-4 pr-6 rounded-2xl bg-[#050608] border border-graphite flex items-center gap-4 shrink-0 self-start md:self-auto">
+        <div id="speedometer" class="speedometer p-4 pr-6 rounded-2xl bg-surface border border-line flex items-center gap-4 shrink-0 self-start md:self-auto">
           <svg viewBox="0 0 140 75" class="w-[120px] h-[66px] overflow-visible" aria-hidden="true">
-            <path d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke="#292d30" stroke-width="8" stroke-linecap="round"/>
-            <path class="speed-arc" d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke="#0070f3" stroke-width="8" stroke-linecap="round"/>
+            <path class="speed-track" d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke-width="8" stroke-linecap="round"/>
+            <path class="speed-arc" d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke-width="8" stroke-linecap="round"/>
             <g class="speed-needle">
-              <line x1="70" y1="70" x2="70" y2="24" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="70" cy="70" r="6" fill="#00e5ff"/>
+              <line class="speed-needle-line" x1="70" y1="70" x2="70" y2="24" stroke-width="3" stroke-linecap="round"/>
+              <circle class="speed-needle-dot" cx="70" cy="70" r="6"/>
             </g>
           </svg>
           <div>
-            <p class="text-[11px] font-mono text-cyan-accent">Velocidad de apertura</p>
-            <p class="text-3xl font-semibold font-mono text-white tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
+            <p class="text-[11px] font-mono text-accent" data-i18n="bench.speed">Velocidad de apertura</p>
+            <p class="text-3xl font-semibold font-mono text-fg tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
           </div>
         </div>
       </div>
 
       <div class="diff">
         <div class="diff-head">
-          <span><span class="text-white">git diff</span> plantilla-wordpress codigo-puro</span>
-          <span><span class="text-[#ff9592]">−3</span> <span class="text-neon-blue">+3</span></span>
+          <span><span class="text-fg">git diff</span> <span data-i18n="bench.files">plantilla-wordpress codigo-puro</span></span>
+          <span><span class="text-bad">−3</span> <span class="text-accent-2">+3</span></span>
         </div>
         <div class="diff-cols">
           <div class="diff-col">
-            <div class="diff-file"><span class="text-[#ff9592]">✕ plantilla-wordpress</span><span class="text-ash">4.8s de carga</span></div>
-            <div class="diff-row comment"><span class="ln">1</span><span class="sign"></span><span>// Problemas típicos de una plantilla</span></div>
-            <div class="diff-row del"><span class="ln">2</span><span class="sign">−</span><span><strong>Carga lenta (4 a 6s):</strong> decenas de plugins sumando peticiones y frenando el celular.</span></div>
-            <div class="diff-row del"><span class="ln">3</span><span class="sign">−</span><span><strong>Vulnerabilidades periódicas:</strong> código desactualizado y riesgo de rotura en cada update.</span></div>
-            <div class="diff-row del"><span class="ln">4</span><span class="sign">−</span><span><strong>Fuga de clientes:</strong> más de la mitad de las visitas en celular abandona si la web tarda más de 3s.</span></div>
+            <div class="diff-file"><span class="text-bad" data-i18n="bench.fileA">✕ plantilla-wordpress</span><span class="text-muted" data-i18n="bench.loadA">4.8s de carga</span></div>
+            <div class="diff-row comment"><span class="ln">1</span><span class="sign"></span><span data-i18n="bench.cA">// Problemas típicos de una plantilla</span></div>
+            <div class="diff-row del"><span class="ln">2</span><span class="sign">−</span><span data-i18n-html="bench.a1"><strong>Carga lenta (4 a 6s):</strong> decenas de plugins sumando peticiones y frenando el celular.</span></div>
+            <div class="diff-row del"><span class="ln">3</span><span class="sign">−</span><span data-i18n-html="bench.a2"><strong>Vulnerabilidades periódicas:</strong> código desactualizado y riesgo de rotura en cada update.</span></div>
+            <div class="diff-row del"><span class="ln">4</span><span class="sign">−</span><span data-i18n-html="bench.a3"><strong>Fuga de clientes:</strong> más de la mitad de las visitas en celular abandona si la web tarda más de 3s.</span></div>
           </div>
           <div class="diff-col">
-            <div class="diff-file"><span class="text-neon-blue">✓ codigo-puro</span><span class="text-pulse-green">0.4s de carga</span></div>
-            <div class="diff-row comment"><span class="ln">1</span><span class="sign"></span><span>// Cómo trabajo yo</span></div>
-            <div class="diff-row add"><span class="ln">2</span><span class="sign">+</span><span><strong>Apertura instantánea:</strong> HTML semántico y CSS liviano, sin nada que sobre.</span></div>
-            <div class="diff-row add"><span class="ln">3</span><span class="sign">+</span><span><strong>Cero dependencias frágiles:</strong> no se rompe solo ni te ata a cuotas mensuales de plugins.</span></div>
-            <div class="diff-row add"><span class="ln">4</span><span class="sign">+</span><span><strong>Conversión directa:</strong> cada botón abre WhatsApp con el contexto de lo que te interesa.</span></div>
+            <div class="diff-file"><span class="text-accent-2" data-i18n="bench.fileB">✓ codigo-puro</span><span class="text-ok" data-i18n="bench.loadB">0.4s de carga</span></div>
+            <div class="diff-row comment"><span class="ln">1</span><span class="sign"></span><span data-i18n="bench.cB">// Cómo trabajo yo</span></div>
+            <div class="diff-row add"><span class="ln">2</span><span class="sign">+</span><span data-i18n-html="bench.b1"><strong>Apertura instantánea:</strong> HTML semántico y CSS liviano, sin nada que sobre.</span></div>
+            <div class="diff-row add"><span class="ln">3</span><span class="sign">+</span><span data-i18n-html="bench.b2"><strong>Cero dependencias frágiles:</strong> no se rompe solo ni te ata a cuotas mensuales de plugins.</span></div>
+            <div class="diff-row add"><span class="ln">4</span><span class="sign">+</span><span data-i18n-html="bench.b3"><strong>Conversión directa:</strong> cada botón abre WhatsApp con el contexto de lo que te interesa.</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ====================================================================
-         SERVICIOS
+         (03) SERVICIOS — sección clara
          ==================================================================== -->
-    <section id="servicios" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-graphite" aria-labelledby="servicios-title">
+    <section id="servicios" class="border-t border-line" aria-labelledby="servicios-title">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
 
-      <div class="mb-12 max-w-xl">
-        <span class="section-kicker">Soluciones a medida</span>
-        <h2 id="servicios-title" class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.03em] mt-3 text-balance">
-          Qué puedo construir para vos.
-        </h2>
-      </div>
+        <div class="mb-12 max-w-2xl">
+          <p class="section-kicker"><span data-i18n="services.kicker">Qué puedo construir</span></p>
+          <h2 id="servicios-title" class="section-title" data-reveal data-i18n-html="services.title">
+            Todo lo que tu negocio necesita <span class="tone">para salir al aire.</span>
+          </h2>
+        </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5" data-spotlight>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5" data-spotlight>
 
-        <article class="spot-card" style="--accent: 56, 189, 248">
-          <div class="space-y-4">
-            <span class="spot-num" aria-hidden="true">01</span>
-            <h3 class="text-xl font-semibold text-white">Menús y catálogos QR</h3>
-            <p class="text-sm text-ash leading-relaxed text-pretty">
-              Para gastronomía y showrooms. La carta o el catálogo se ve al instante, con fotos en alta calidad y pedidos que llegan ordenados a tu WhatsApp.
-            </p>
-          </div>
-          <div class="pt-8">
-            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="Menú o catálogo digital QR">
-              <span>Cotizar catálogo QR</span><span class="text-cyan-accent" aria-hidden="true">→</span>
-            </a>
-          </div>
-        </article>
+          <article class="spot-card" style="--spot: 0, 112, 243">
+            <div class="space-y-4">
+              <h3 class="text-xl font-medium tracking-[-0.02em]" data-i18n="services.t1">Menús y catálogos QR</h3>
+              <p class="text-sm leading-relaxed text-pretty spot-text" data-i18n="services.d1">
+                Para gastronomía y showrooms. La carta o el catálogo se ve al instante, con fotos en alta calidad y pedidos que llegan ordenados a tu WhatsApp.
+              </p>
+            </div>
+            <div class="pt-8">
+              <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="qr">
+                <span data-i18n="services.c1">Cotizar catálogo QR</span>
+              </a>
+            </div>
+          </article>
 
-        <article class="spot-card" style="--accent: 58, 211, 137">
-          <div class="space-y-4">
-            <span class="spot-num" aria-hidden="true">02</span>
-            <h3 class="text-xl font-semibold text-white">Landing pages</h3>
-            <p class="text-sm text-ash leading-relaxed text-pretty">
-              Para profesionales, servicios y lanzamientos. Estructura pensada para vender, velocidad récord y llamados a la acción claros para captar clientes.
-            </p>
-          </div>
-          <div class="pt-8">
-            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="Landing page">
-              <span>Cotizar landing page</span><span class="text-pulse-green" aria-hidden="true">→</span>
-            </a>
-          </div>
-        </article>
+          <article class="spot-card" style="--spot: 22, 163, 98">
+            <div class="space-y-4">
+              <h3 class="text-xl font-medium tracking-[-0.02em]" data-i18n="services.t2">Landing pages</h3>
+              <p class="text-sm leading-relaxed text-pretty spot-text" data-i18n="services.d2">
+                Para profesionales, servicios y lanzamientos. Estructura pensada para vender, velocidad récord y llamados a la acción claros para captar clientes.
+              </p>
+            </div>
+            <div class="pt-8">
+              <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="landing">
+                <span data-i18n="services.c2">Cotizar landing page</span>
+              </a>
+            </div>
+          </article>
 
-        <article class="spot-card" style="--accent: 0, 229, 255">
-          <div class="space-y-4">
-            <span class="spot-num" aria-hidden="true">03</span>
-            <h3 class="text-xl font-semibold text-white">Plataformas web</h3>
-            <p class="text-sm text-ash leading-relaxed text-pretty">
-              Para lo que una plantilla no puede resolver: calculadoras, cotizadores online, pagos y lógica en tiempo real.
-            </p>
-          </div>
-          <div class="pt-8">
-            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="Plataforma web a medida">
-              <span>Cotizar plataforma</span><span class="text-neon-blue" aria-hidden="true">→</span>
-            </a>
-          </div>
-        </article>
+          <article class="spot-card" style="--spot: 2, 132, 199">
+            <div class="space-y-4">
+              <h3 class="text-xl font-medium tracking-[-0.02em]" data-i18n="services.t3">Plataformas web</h3>
+              <p class="text-sm leading-relaxed text-pretty spot-text" data-i18n="services.d3">
+                Para lo que una plantilla no puede resolver: calculadoras, cotizadores online, pagos y lógica en tiempo real.
+              </p>
+            </div>
+            <div class="pt-8">
+              <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="platform">
+                <span data-i18n="services.c3">Cotizar plataforma</span>
+              </a>
+            </div>
+          </article>
 
+        </div>
       </div>
     </section>
 
     <!-- ====================================================================
-         METODOLOGÍA
+         (04) CÓMO TRABAJAMOS — dos formas + etapas
          ==================================================================== -->
-    <section id="metodologia" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-graphite" aria-labelledby="metodologia-title">
+    <section id="metodologia" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-line" aria-labelledby="metodologia-title">
 
-      <div class="mb-14 max-w-xl">
-        <span class="section-kicker">Proceso de trabajo</span>
-        <h2 id="metodologia-title" class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.03em] mt-3 text-balance">
-          Tres etapas, sin sorpresas.
+      <div class="mb-12 max-w-2xl">
+        <p class="section-kicker"><span data-i18n="process.kicker">Cómo trabajamos</span></p>
+        <h2 id="metodologia-title" class="section-title" data-reveal data-i18n-html="process.title">
+          Dos formas de trabajar. <span class="tone">Elegí la que te quede cómoda.</span>
         </h2>
       </div>
 
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <article class="way-card">
+          <div class="flex items-center justify-between">
+            <span class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg>
+            </span>
+          </div>
+          <h3 class="text-2xl font-medium text-fg tracking-[-0.03em] mt-6" data-i18n="process.aTitle">Vos traés la idea</h3>
+          <p class="text-fg-soft leading-relaxed mt-3 text-pretty" data-i18n="process.aText">
+            Me contás qué imaginás y lo diseño a partir de eso. Lo ajustamos juntos hasta que quede como lo pensaste.
+          </p>
+          <p class="text-xs text-muted mt-4 leading-relaxed"><span class="font-mono text-accent" data-i18n="process.ideal">Ideal si</span> <span data-i18n="process.aIdeal">ya tenés una referencia, un estilo o algo concreto en mente.</span></p>
+          <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="btn btn-outline mt-8 self-start" data-wa="wayA">
+            <span data-i18n="process.choose">Elegir esta forma</span>
+          </a>
+        </article>
+
+        <article class="way-card way-card--accent">
+          <div class="flex items-center justify-between">
+            <span class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 12.5l2 2 4-4.5"/></svg>
+            </span>
+          </div>
+          <h3 class="text-2xl font-medium text-fg tracking-[-0.03em] mt-6" data-i18n="process.bTitle">Yo te propongo</h3>
+          <p class="text-fg-soft leading-relaxed mt-3 text-pretty" data-i18n="process.bText">
+            Me contás de tu negocio y te presento una propuesta completa pensada para vender. Vos solo me decís qué cambiar.
+          </p>
+          <p class="text-xs text-muted mt-4 leading-relaxed"><span class="font-mono text-accent" data-i18n="process.ideal">Ideal si</span> <span data-i18n="process.bIdeal">no tenés una idea clara y preferís que te guíe.</span></p>
+          <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="btn btn-wa mt-8 self-start" data-wa="wayB">
+            <span data-i18n="process.choose">Elegir esta forma</span>
+          </a>
+        </article>
+      </div>
+
+      <h3 class="font-mono text-xs text-muted mt-20 mb-10" data-i18n="process.stepsTitle">En los dos casos, el camino es el mismo:</h3>
       <ol class="timeline">
         <li style="--dot: #0070f3">
-          <p class="text-xs font-mono text-cyan-accent">Fase 01</p>
-          <h3 class="text-lg font-semibold text-white mt-1">Diagnóstico y dirección de arte</h3>
-          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm">
+          <p class="text-xs font-mono text-accent" data-i18n="process.s1k">Etapa 01</p>
+          <h4 class="text-lg font-medium text-fg mt-1" data-i18n="process.s1t">Diagnóstico y dirección de arte</h4>
+          <p class="text-sm text-muted mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s1d">
             Analizamos tu negocio, definimos la estructura y acordamos la identidad visual antes de escribir una línea de código.
           </p>
         </li>
         <li style="--dot: #38bdf8">
-          <p class="text-xs font-mono text-cyan-accent">Fase 02</p>
-          <h3 class="text-lg font-semibold text-white mt-1">Desarrollo con código puro</h3>
-          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm">
-            Construcción a mano, cuidando velocidad, compatibilidad con todos los dispositivos y cada detalle de la experiencia.
+          <p class="text-xs font-mono text-accent" data-i18n="process.s2k">Etapa 02</p>
+          <h4 class="text-lg font-medium text-fg mt-1" data-i18n="process.s2t">Desarrollo con código puro</h4>
+          <p class="text-sm text-muted mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s2d">
+            Construcción a mano, cuidando velocidad, compatibilidad con todos los dispositivos y cada detalle. Ves los avances antes de publicar.
           </p>
         </li>
         <li style="--dot: #3ad389">
-          <p class="text-xs font-mono text-pulse-green">Fase 03</p>
-          <h3 class="text-lg font-semibold text-white mt-1">Lanzamiento y conexión a WhatsApp</h3>
-          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm">
+          <p class="text-xs font-mono text-ok" data-i18n="process.s3k">Etapa 03</p>
+          <h4 class="text-lg font-medium text-fg mt-1" data-i18n="process.s3t">Lanzamiento y conexión a WhatsApp</h4>
+          <p class="text-sm text-muted mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s3d">
             Dominio conectado, prueba de velocidad en vivo y los canales de contacto activos desde el primer día.
           </p>
         </li>
@@ -424,55 +468,145 @@
     </section>
 
     <!-- ====================================================================
-         CTA FINAL
+         (05) PREGUNTAS FRECUENTES — sección clara
          ==================================================================== -->
-    <section class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-24 lg:pb-32" aria-labelledby="cta-title">
-      <div class="final-cta px-6 py-16 sm:px-14 sm:py-24 text-center">
-        <div class="max-w-2xl mx-auto space-y-6">
+    <section id="faq" class="border-t border-line" aria-labelledby="faq-title">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-          <span class="inline-flex items-center gap-2 px-3 py-1 border border-graphite rounded-[6px] font-mono text-xs text-ash bg-white/[0.02]">
-            <span class="live-dot" aria-hidden="true"></span>
-            Atención 1 a 1, directo conmigo
-          </span>
-
-          <h2 id="cta-title" class="text-4xl sm:text-6xl font-semibold text-white tracking-[-0.035em] leading-[1.02] text-balance">
-            ¿Tenés un proyecto en mente?
+        <div class="lg:col-span-4">
+          <p class="section-kicker"><span data-i18n="faq.kicker">Preguntas frecuentes</span></p>
+          <h2 id="faq-title" class="section-title" data-reveal data-i18n-html="faq.title">
+            Lo que todos <span class="tone">me preguntan.</span>
           </h2>
+          <p class="mt-4 text-pretty spot-text" data-i18n="faq.sub">¿Te quedó otra duda? Escribime y te respondo yo.</p>
+        </div>
 
-          <p class="text-bone/80 text-base sm:text-lg leading-relaxed text-pretty max-w-lg mx-auto">
-            Sin intermediarios ni formularios eternos. Me contás tu idea por WhatsApp y te paso una propuesta a medida.
+        <div class="lg:col-span-8 faq-list">
+          <details class="faq-item">
+            <summary><span data-i18n="faq.q1">¿Cuánto cuesta una web?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <p data-i18n="faq.a1">Depende de lo que necesites: no es lo mismo una landing que una plataforma con pagos. Después de una charla corta te paso un presupuesto a medida, sin compromiso.</p>
+          </details>
+          <details class="faq-item">
+            <summary><span data-i18n="faq.q2">¿Cuánto tarda?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <p data-i18n="faq.a2">Depende del alcance. Antes de arrancar acordamos juntos una fecha de entrega concreta.</p>
+          </details>
+          <details class="faq-item">
+            <summary><span data-i18n="faq.q3">¿Voy a ver cómo queda antes de publicarla?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <p data-i18n="faq.a3">Sí. Vas viendo los avances durante el desarrollo y no se publica nada sin tu aprobación.</p>
+          </details>
+          <details class="faq-item">
+            <summary><span data-i18n="faq.q4">¿Por qué no usar WordPress o una plantilla?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <p data-i18n="faq.a4">Porque una web hecha a mano carga mucho más rápido, no depende de plugins que se rompen con cada actualización y se adapta 100% a tu negocio en vez de que tu negocio se adapte a la plantilla.</p>
+          </details>
+          <details class="faq-item">
+            <summary><span data-i18n="faq.q5">¿Se puede conectar con lo que ya uso?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <p data-i18n="faq.a5">En la mayoría de los casos sí: WhatsApp, Google Maps, redes sociales, formularios o medios de pago. Lo vemos en la primera charla.</p>
+          </details>
+          <details class="faq-item">
+            <summary><span data-i18n="faq.q6">¿Trabajás con clientes de otros países?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <p data-i18n="faq.a6">Sí. Todo el proceso es online, así que podemos trabajar desde cualquier lugar, en español o en inglés.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         (06) PRESUPUESTO — armá tu pedido
+         ==================================================================== -->
+    <section id="presupuesto" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32" aria-labelledby="cta-title">
+      <div class="final-cta grid grid-cols-1 lg:grid-cols-12 gap-10 px-6 py-12 sm:px-12 sm:py-16">
+
+        <div class="lg:col-span-5 space-y-6">
+          <p class="section-kicker"><span data-i18n="quote.kicker">Presupuesto</span></p>
+          <h2 id="cta-title" class="section-title !text-4xl sm:!text-6xl" data-reveal data-i18n-html="quote.title">
+            ¿Tenés un proyecto <span class="tone">en mente?</span>
+          </h2>
+          <p class="text-fg-soft text-base sm:text-lg leading-relaxed text-pretty" data-i18n="quote.sub">
+            Armá tu pedido en 30 segundos y se abre WhatsApp con todo listo para enviar. Sin formularios eternos.
           </p>
-
-          <div class="pt-2 flex justify-center">
-            <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-wa !text-base !py-4 !px-8" data-wa="Consulta directa">
-              <svg aria-hidden="true"><use href="#i-wa"/></svg>
-              <span>Escribirme por WhatsApp</span>
-            </a>
-          </div>
-
-          <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-2 text-xs font-mono text-ash">
-            <li><span class="text-pulse-green" aria-hidden="true">✓</span> Respuesta rápida</li>
-            <li><span class="text-pulse-green" aria-hidden="true">✓</span> Presupuesto sin compromiso</li>
-            <li><span class="text-pulse-green" aria-hidden="true">✓</span> Trato directo</li>
+          <ul class="check-list">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="check.1">Presupuesto sin compromiso</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="check.2">Respuesta rápida</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="check.3">Trato directo, sin intermediarios</span></li>
           </ul>
         </div>
+
+        <form id="quote-form" class="quote-form lg:col-span-7" novalidate>
+          <p class="font-mono text-[11px] text-muted" data-i18n="form.kicker">Armá tu pedido en 30 segundos</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="field">
+              <span data-i18n="form.business">¿A qué te dedicás?</span>
+              <input type="text" name="business" autocomplete="organization" placeholder="Ej.: restaurante, estudio contable…" data-i18n-attr="placeholder:form.businessPh">
+            </label>
+            <label class="field">
+              <span><span data-i18n="form.name">Tu nombre</span> <em data-i18n="form.optional">(opcional)</em></span>
+              <input type="text" name="name" autocomplete="given-name">
+            </label>
+          </div>
+
+          <fieldset class="chips">
+            <legend data-i18n="form.need">¿Qué necesitás?</legend>
+            <label><input type="radio" name="need" value="landing" checked><span data-i18n="form.need1">Una landing page</span></label>
+            <label><input type="radio" name="need" value="qr"><span data-i18n="form.need2">Menú o catálogo QR</span></label>
+            <label><input type="radio" name="need" value="platform"><span data-i18n="form.need3">Una plataforma web</span></label>
+            <label><input type="radio" name="need" value="redesign"><span data-i18n="form.need4">Rediseñar mi web</span></label>
+            <label><input type="radio" name="need" value="unsure"><span data-i18n="form.need5">No sé, quiero que me orientes</span></label>
+          </fieldset>
+
+          <fieldset class="chips">
+            <legend data-i18n="form.when">¿Para cuándo?</legend>
+            <label><input type="radio" name="when" value="asap" checked><span data-i18n="form.when1">Lo antes posible</span></label>
+            <label><input type="radio" name="when" value="month"><span data-i18n="form.when2">Este mes</span></label>
+            <label><input type="radio" name="when" value="norush"><span data-i18n="form.when3">Sin apuro</span></label>
+          </fieldset>
+
+          <button type="submit" class="btn btn-wa w-full !py-4 !text-base">
+            <svg aria-hidden="true"><use href="#i-wa"/></svg>
+            <span data-i18n="form.submit">Enviar pedido por WhatsApp</span>
+          </button>
+          <p class="font-mono text-[11px] text-center text-muted" data-i18n="form.note">Se abre WhatsApp con el pedido listo. Esta página no guarda nada.</p>
+        </form>
+
       </div>
     </section>
 
   </main>
 
-  <footer class="border-t border-graphite py-8 text-xs text-ash font-mono" style="padding-bottom: max(2rem, env(safe-area-inset-bottom))">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p><span class="text-white font-medium">by.nicocieplak</span> — código puro a medida</p>
-      <nav class="flex items-center gap-2" aria-label="Pie de página">
-        <a href="#proyectos" class="px-2 min-h-[44px] inline-flex items-center hover:text-white transition-colors">Proyectos</a>
-        <a href="#comparativa" class="px-2 min-h-[44px] inline-flex items-center hover:text-white transition-colors">Rendimiento</a>
-        <a href="#servicios" class="px-2 min-h-[44px] inline-flex items-center hover:text-white transition-colors">Servicios</a>
-      </nav>
-      <p>Argentina © <span id="year">2026</span></p>
+  <footer class="border-t border-line pt-16 text-sm" style="padding-bottom: max(2rem, env(safe-area-inset-bottom))">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
+        <div class="md:col-span-6 space-y-3">
+          <p class="font-mono font-semibold text-fg" translate="no">by.nicocieplak</p>
+          <p class="text-muted max-w-sm" data-i18n="footer.tag">Webs y plataformas a medida, hechas con código puro.</p>
+        </div>
+        <nav class="md:col-span-3 flex flex-col gap-1" aria-label="Pie de página" data-i18n-attr="aria-label:footer.navLabel">
+          <p class="font-mono text-xs text-muted mb-2" data-i18n="footer.explore">Explorar</p>
+          <a href="#proyectos" class="footer-link" data-i18n="nav.projects">Proyectos</a>
+          <a href="#servicios" class="footer-link" data-i18n="nav.services">Servicios</a>
+          <a href="#metodologia" class="footer-link" data-i18n="nav.process">Proceso</a>
+          <a href="#faq" class="footer-link" data-i18n="nav.faq">Preguntas</a>
+        </nav>
+        <div class="md:col-span-3 flex flex-col gap-1">
+          <p class="font-mono text-xs text-muted mb-2" data-i18n="footer.contact">Contacto</p>
+          <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="footer-link" data-wa="general">WhatsApp</a>
+          <a href="#presupuesto" class="footer-link" data-i18n="nav.quote">Presupuesto</a>
+        </div>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t border-line pt-6 text-xs text-muted font-mono">
+        <p>© <span id="year">2026</span> by.nicocieplak, Argentina</p>
+        <a href="#top" class="to-top" aria-label="Volver arriba" data-i18n-attr="aria-label:footer.top">↑</a>
+      </div>
     </div>
   </footer>
 
-  <script src="assets/js/main.js" defer></script>
+  <!-- Botón flotante de WhatsApp (aparece después del hero) -->
+  <a href="https://wa.me/5491136740676" target="_blank" rel="noopener noreferrer" class="wa-float" data-wa="general" aria-label="Escribime por WhatsApp" data-i18n-attr="aria-label:float.label">
+    <svg aria-hidden="true"><use href="#i-wa-full"/></svg>
+    <span class="wa-float-dot" aria-hidden="true"></span>
+  </a>
+
+  <script src="assets/js/i18n.js?v=20261105g" defer></script>
+  <script src="assets/js/main.js?v=20261105g" defer></script>
 </body>
 </html>

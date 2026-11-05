@@ -230,6 +230,7 @@ const fragmentShader = /* glsl */ `
   uniform vec3  uC2;
   uniform vec3  uC3;
   uniform float uOpacity;
+  uniform float uLight;   // 0 = fondo oscuro, 1 = fondo claro
 
   varying float vLight;
   varying float vColorT;
@@ -248,10 +249,12 @@ const fragmentShader = /* glsl */ `
     float r = length(gl_PointCoord - 0.5);
     if (r > 0.5) discard;
 
-    vec3 col = palette(vColorT);
-    col = mix(col, vec3(1.0), vSpark * 0.7);      // algunas partículas blancas
-    col *= vLight;
-    col = mix(col, vec3(1.0), vHit * 0.4);        // brillo donde toca el cursor
+    vec3 base = palette(vColorT);
+    // Algunas partículas "brillan": blancas sobre fondo oscuro, azul noche sobre fondo claro
+    base = mix(base, mix(vec3(1.0), vec3(0.03, 0.06, 0.12), uLight), vSpark * 0.7);
+    // Oscuro: la luz va de negro a color pleno. Claro: nunca baja de un 55% (no quedan puntos negros)
+    vec3 col = mix(base * vLight, base * mix(0.55, 1.0, clamp(vLight, 0.0, 1.0)), uLight);
+    col = mix(col, mix(vec3(1.0), uC0, uLight), vHit * 0.4); // donde toca el cursor
 
     gl_FragColor = vec4(col, vFade * uOpacity);
   }
@@ -262,7 +265,10 @@ const fragmentShader = /* glsl */ `
 /* ------------------------------------------------------------------ */
 export function createParticleHead(container, options = {}) {
   const o = { ...DEFAULTS, ...options };
+  // Si el sistema tiene "reducir movimiento" (en Windows: Efectos de animación desactivados)
+  // se saca solo lo automático (entrada y vaivén). Lo que mueve el usuario con el mouse sigue andando.
   const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) console.info('[particle-head] "Reducir movimiento" activo: sin animación de entrada ni vaivén automático.');
   const isMobile = window.matchMedia?.('(pointer: coarse)').matches;
   const count = isMobile ? Math.round(o.count * 0.55) : o.count;
 
@@ -272,7 +278,7 @@ export function createParticleHead(container, options = {}) {
   } catch (err) {
     // Sin WebGL (navegador viejo o desactivado): la página sigue funcionando sin la cabeza
     console.warn('[particle-head] WebGL no disponible', err);
-    return { setColors() {}, destroy() {} };
+    return { setColors() {}, setTheme() {}, destroy() {} };
   }
   const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
   renderer.setPixelRatio(pixelRatio);
@@ -326,6 +332,7 @@ export function createParticleHead(container, options = {}) {
     uC2: { value: new THREE.Color(o.colors[2]) },
     uC3: { value: new THREE.Color(o.colors[3]) },
     uSparkle: { value: o.sparkle },
+    uLight: { value: 0 },
     uOpacity: { value: 1 },
   };
 
@@ -394,7 +401,7 @@ export function createParticleHead(container, options = {}) {
     const dt = Math.min(clock.getDelta(), 0.05);
     const t = clock.elapsedTime;
     if (sampler.filled < sampler.count) growGeometry();
-    uniforms.uTime.value = reduceMotion ? 0 : t;
+    uniforms.uTime.value = t;
 
     if (uniforms.uProgress.value < 1) {
       uniforms.uProgress.value = Math.min(1, uniforms.uProgress.value + dt / 2.2);
@@ -402,8 +409,9 @@ export function createParticleHead(container, options = {}) {
 
     // Hacia dónde mira: al cursor, o un vaivén suave si no hay mouse (mobile)
     const idle = performance.now() - lastMove > 4000;
-    const targetX = idle ? Math.sin(t * 0.4) * 0.25 : pointer.x * 0.6;
-    const targetY = idle ? Math.sin(t * 0.3) * 0.06 : -pointer.y * 0.3;
+    const sway = idle && !reduceMotion;
+    const targetX = sway ? Math.sin(t * 0.4) * 0.25 : idle ? 0 : pointer.x * 0.6;
+    const targetY = sway ? Math.sin(t * 0.3) * 0.06 : idle ? 0 : -pointer.y * 0.3;
     const k = 1 - Math.exp(-dt * 3.5);
     uniforms.uLook.value.x += (targetX * o.lookStrength - uniforms.uLook.value.x) * k;
     uniforms.uLook.value.y += (targetY * o.lookStrength - uniforms.uLook.value.y) * k;
@@ -413,7 +421,7 @@ export function createParticleHead(container, options = {}) {
     mouseSmooth.x += (pointer.x - mouseSmooth.x) * km;
     mouseSmooth.y += (pointer.y - mouseSmooth.y) * km;
     uniforms.uMouse.value.copy(mouseSmooth);
-    const sTarget = pointerInside && !reduceMotion ? 1 : 0;
+    const sTarget = pointerInside ? 1 : 0;
     uniforms.uMouseStrength.value += (sTarget - uniforms.uMouseStrength.value) * (1 - Math.exp(-dt * 4));
 
     renderer.render(scene, camera);
@@ -422,6 +430,10 @@ export function createParticleHead(container, options = {}) {
 
   return {
     /** Cambiar la paleta en caliente: head.setColors(['#0070f3', '#38bdf8', '#3ad389', '#00e5ff']) */
+    /** Adaptar a fondo claro u oscuro: head.setTheme('light' | 'dark') */
+    setTheme(theme) {
+      uniforms.uLight.value = theme === 'light' ? 1 : 0;
+    },
     setColors(colors) {
       [uniforms.uC0, uniforms.uC1, uniforms.uC2, uniforms.uC3].forEach((u, i) => colors[i] && u.value.set(colors[i]));
     },

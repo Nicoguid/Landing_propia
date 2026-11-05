@@ -8,7 +8,7 @@ In every response and code modification within this project, you MUST strictly a
 
 ### 1. Distinctive Frontend Design (`frontend-design`)
 - **No Generic AI Slop:** Avoid clichéd AI templates (e.g., standard rounded card kits with the same border-radius, tracked-out ALL-CAPS eyebrows on every section, decorative gradient overlays without purpose, middle-dot meta strings `A · B · C`).
-- **Intentional Typography & Contrast:** Maintain deliberate type hierarchy (`Inter` + `Geist Mono`). Adhere to line lengths under 80 characters for readability.
+- **Intentional Typography & Contrast:** Maintain deliberate type hierarchy (`Geist` + `Geist Mono`). Adhere to line lengths under 80 characters for readability.
 - **Intentional Motion:** Do not scatter generic entrance fade-ins across every card. Reserve animations for purposeful user interactions or a single signature hero element. Keep animations hardware-accelerated (`transform`, `opacity`).
 
 ### 2. Web Interface Guidelines (`web-design-guidelines`)

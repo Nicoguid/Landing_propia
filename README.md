@@ -9,10 +9,12 @@ index.html
 assets/
   css/tailwind.css      ← generado (no editar a mano)
   css/styles.css        ← estilos propios
-  js/main.js            ← menú, WhatsApp, contadores, carga diferida de la cabeza
+  js/main.js            ← idioma, menú, WhatsApp, formulario, animaciones, carga de la cabeza
+  js/i18n.js            ← textos en inglés + mensajes de WhatsApp (ES/EN)
   js/hero-head.min.js   ← generado (three.js + cabeza)
-  fonts/                ← Inter + Geist Mono (self-hosted)
-  images/
+  fonts/                ← Geist + Geist Mono (self-hosted)
+  images/               ← posters de los videos, og-image, favicon
+  video/                ← mini-videos de los proyectos (MP4, ~300 KB c/u)
 src/
   tailwind.css          ← entrada de Tailwind
   particle-head.js      ← la cabeza de partículas (forma, shaders, mouse)
@@ -32,5 +34,8 @@ Los archivos generados se commitean, así el hosting no necesita correr ningún 
 
 ## Configurar
 
+- Textos en español: directo en `index.html`. Textos en inglés: `assets/js/i18n.js` (misma clave que el `data-i18n` del HTML).
+- Link directo en inglés: `?lang=en` al final de la URL.
+- Colores: todos salen de las variables de `:root` en `assets/css/styles.css` . Para cambiar un color, cambialo ahí y se aplica en toda la página.
 - Número de WhatsApp: `CONFIG.whatsappNumber` en `assets/js/main.js`.
 - Colores / tamaño / posición de la cabeza: `src/hero-head.js` → después `npm run build:js`.

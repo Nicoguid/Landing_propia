@@ -1,0 +1,12 @@
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Dependencies & Build
+node_modules/
+dist/
+
+# Gemini / Local Cache & Duplicates
+.gemini/
+.agent/

@@ -12,7 +12,7 @@ const CONFIG = {
 // Cambiá este valor cada vez que subas cambios: obliga al navegador a bajar
 // la versión nueva de la cabeza 3D en lugar de usar la que tiene guardada.
 // (Usá el mismo valor en los ?v= de index.html)
-const ASSET_VERSION = '20261105c';
+const ASSET_VERSION = '20261105d';
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -312,16 +312,19 @@ body {
 
 .hero-title {
   position: relative;
-  z-index: 1;
-  margin-top: 4vh;
+  z-index: 3; /* delante de la cabeza: con una frase larga, la legibilidad manda */
+  width: 100%;
+  max-width: 1440px;
+  margin: 2vh auto 0;
+  padding: 0.12em 4vw 0.06em; /* aire arriba para la tilde de la Ñ (background-clip recorta lo que sale de la caja) */
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-weight: 500;
-  font-size: clamp(48px, 11.6vw, 200px); /* calibrado para "HECHO A MEDIDA" (14 letras) */
-  line-height: 0.82;
+  font-size: clamp(44px, 8.4vw, 150px); /* calibrado para 2 líneas de ~15 letras */
+  line-height: 0.92;
   letter-spacing: -0.04em;
   text-transform: uppercase;
-  text-align: center;
   white-space: nowrap;
+  pointer-events: none;
   color: transparent;
   background: linear-gradient(180deg, #f4f6f8 0%, #9aa1a8 100%);
   -webkit-background-clip: text;
@@ -329,7 +332,12 @@ body {
   user-select: none;
 }
 
-/* El canvas de la cabeza: entre el título y los textos */
+/* Primera línea a la izquierda, segunda a la derecha */
+.hero-line { display: block; }
+.hero-line--1 { text-align: left; }
+.hero-line--2 { text-align: right; }
+
+/* El canvas de la cabeza: detrás del título y los textos */
 .hero-head {
   position: absolute;
   inset: 0;
@@ -370,10 +378,11 @@ body {
 @media (max-width: 767px) {
   .hero-title {
     white-space: normal;
-    font-size: 20vw;
-    line-height: 0.86;
+    font-size: 13.5vw;
+    line-height: 0.9;
     margin-top: 1vh;
   }
+  .hero-line { display: inline; } /* en celular la frase corre de corrido */
   .hero-fade {
     height: 55%;
     background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.78) 28%, rgba(0, 0, 0, 0.95) 100%);

@@ -34,6 +34,7 @@ Los archivos generados se commitean, así el hosting no necesita correr ningún 
 ## Configurar
 
 - Textos en español: directo en `index.html`. Textos en inglés: `assets/js/i18n.js` (misma clave que el `data-i18n` del HTML).
-- Link directo en inglés: `?lang=en` al final de la URL.
+- Link directo en inglés: `?lang=en` al final de la URL. Modo claro: `?theme=light`.
+- Colores: todos salen de las variables de `:root` en `assets/css/styles.css` (bloque oscuro y bloque claro). Para cambiar un color, cambialo ahí y se aplica en toda la página.
 - Número de WhatsApp: `CONFIG.whatsappNumber` en `assets/js/main.js`.
 - Colores / tamaño / posición de la cabeza: `src/hero-head.js` → después `npm run build:js`.

@@ -230,6 +230,7 @@ const fragmentShader = /* glsl */ `
   uniform vec3  uC2;
   uniform vec3  uC3;
   uniform float uOpacity;
+  uniform float uLight;   // 0 = fondo oscuro, 1 = fondo claro
 
   varying float vLight;
   varying float vColorT;
@@ -248,10 +249,12 @@ const fragmentShader = /* glsl */ `
     float r = length(gl_PointCoord - 0.5);
     if (r > 0.5) discard;
 
-    vec3 col = palette(vColorT);
-    col = mix(col, vec3(1.0), vSpark * 0.7);      // algunas partículas blancas
-    col *= vLight;
-    col = mix(col, vec3(1.0), vHit * 0.4);        // brillo donde toca el cursor
+    vec3 base = palette(vColorT);
+    // Algunas partículas "brillan": blancas sobre fondo oscuro, azul noche sobre fondo claro
+    base = mix(base, mix(vec3(1.0), vec3(0.03, 0.06, 0.12), uLight), vSpark * 0.7);
+    // Oscuro: la luz va de negro a color pleno. Claro: nunca baja de un 55% (no quedan puntos negros)
+    vec3 col = mix(base * vLight, base * mix(0.55, 1.0, clamp(vLight, 0.0, 1.0)), uLight);
+    col = mix(col, mix(vec3(1.0), uC0, uLight), vHit * 0.4); // donde toca el cursor
 
     gl_FragColor = vec4(col, vFade * uOpacity);
   }
@@ -275,7 +278,7 @@ export function createParticleHead(container, options = {}) {
   } catch (err) {
     // Sin WebGL (navegador viejo o desactivado): la página sigue funcionando sin la cabeza
     console.warn('[particle-head] WebGL no disponible', err);
-    return { setColors() {}, destroy() {} };
+    return { setColors() {}, setTheme() {}, destroy() {} };
   }
   const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
   renderer.setPixelRatio(pixelRatio);
@@ -329,6 +332,7 @@ export function createParticleHead(container, options = {}) {
     uC2: { value: new THREE.Color(o.colors[2]) },
     uC3: { value: new THREE.Color(o.colors[3]) },
     uSparkle: { value: o.sparkle },
+    uLight: { value: 0 },
     uOpacity: { value: 1 },
   };
 
@@ -426,6 +430,10 @@ export function createParticleHead(container, options = {}) {
 
   return {
     /** Cambiar la paleta en caliente: head.setColors(['#0070f3', '#38bdf8', '#3ad389', '#00e5ff']) */
+    /** Adaptar a fondo claro u oscuro: head.setTheme('light' | 'dark') */
+    setTheme(theme) {
+      uniforms.uLight.value = theme === 'light' ? 1 : 0;
+    },
     setColors(colors) {
       [uniforms.uC0, uniforms.uC1, uniforms.uC2, uniforms.uC3].forEach((u, i) => colors[i] && u.value.set(colors[i]));
     },

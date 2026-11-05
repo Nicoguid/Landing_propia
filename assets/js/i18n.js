@@ -41,7 +41,7 @@ window.I18N = {
     'projects.alt1': 'Dorear page showing the daily set menu and menu categories',
     'projects.live': 'Live',
     'projects.cat1': 'QR digital menu · Restaurants',
-    'projects.desc1': 'An interactive menu that opens instantly when you scan the QR code on the table. It replaces heavy 20 MB PDFs and lets customers order directly via WhatsApp.',
+    'projects.desc1': 'An interactive menu that opens instantly when you scan the QR code on the table. It replaces heavy 20\u00a0MB PDFs and lets customers order directly via WhatsApp.',
     'projects.tag1a': 'Loads in 0.3s',
     'projects.tag1b': 'No PDFs',
     'projects.tag1c': 'WhatsApp orders',
@@ -153,8 +153,8 @@ window.I18N = {
 
   // Textos que arma el JS (no están en el HTML)
   ui: {
-    es: { menuOpen: 'Abrir menú', menuClose: 'Cerrar menú' },
-    en: { menuOpen: 'Open menu', menuClose: 'Close menu' },
+    es: { menuOpen: 'Abrir menú', menuClose: 'Cerrar menú', toLight: 'Activar modo claro', toDark: 'Activar modo oscuro' },
+    en: { menuOpen: 'Open menu', menuClose: 'Close menu', toLight: 'Switch to light mode', toDark: 'Switch to dark mode' },
   },
 
   // Mensajes de WhatsApp según el botón (data-wa="clave")

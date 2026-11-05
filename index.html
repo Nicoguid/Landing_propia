@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -7,6 +7,9 @@
   <title>by.nicocieplak — Desarrollo web a medida con código puro</title>
   <meta name="description" content="Diseño y desarrollo de sitios web y plataformas a medida con código puro. Carga instantánea, diseño exclusivo sin plantillas y conexión directa a WhatsApp.">
   <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark light">
+  <!-- Aplica el tema guardado antes de pintar (si no, se vería un flash oscuro→claro) -->
+  <script>(function(){var m=null;try{m=new URLSearchParams(location.search).get('theme')||localStorage.getItem('theme');}catch(e){}if(m==='light'||m==='dark')document.documentElement.dataset.theme=m;})();</script>
   <link rel="canonical" href="https://artesanal.dev/">
 
   <!-- Open Graph / redes -->
@@ -27,8 +30,8 @@
   <link rel="preload" href="assets/fonts/geist-mono-500.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Tailwind compilado (npm run build) + estilos propios -->
-  <link rel="stylesheet" href="assets/css/tailwind.css?v=20261105e">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261105e">
+  <link rel="stylesheet" href="assets/css/tailwind.css?v=20261105f">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261105f">
 
   <script type="application/ld+json">
   {
@@ -58,7 +61,7 @@
     </symbol>
     <symbol id="i-check" viewBox="0 0 20 20">
       <circle cx="10" cy="10" r="10" fill="currentColor"/>
-      <path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#04131c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" style="stroke: var(--on-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
   </svg>
 
@@ -71,8 +74,8 @@
     <div class="header-container">
 
       <a href="#top" class="flex items-center gap-2.5 min-h-[44px] group" aria-label="by.nicocieplak, volver al inicio" data-i18n-attr="aria-label:logoLabel">
-        <span class="w-7 h-7 rounded-[8px] bg-black border border-graphite group-hover:border-cyan-accent flex items-center justify-center font-mono font-semibold text-xs text-cyan-accent transition-colors" aria-hidden="true">/&gt;</span>
-        <span class="font-mono font-semibold text-sm tracking-tight text-white">by.nicocieplak</span>
+        <span class="w-7 h-7 rounded-[8px] bg-bg border border-line group-hover:border-accent flex items-center justify-center font-mono font-semibold text-xs text-accent transition-colors" aria-hidden="true">/&gt;</span>
+        <span class="font-mono font-semibold text-sm tracking-tight text-fg" translate="no">by.nicocieplak</span>
       </a>
 
       <nav class="hidden lg:flex items-center gap-1" aria-label="Navegación principal" data-i18n-attr="aria-label:navLabel">
@@ -85,17 +88,21 @@
 
       <div class="flex items-center gap-2 sm:gap-3">
         <div class="lang-toggle" role="group" aria-label="Idioma / Language">
-          <span class="lang-thumb" aria-hidden="true"></span>
           <button type="button" data-lang="es" aria-pressed="true" lang="es">ES</button>
           <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
         </div>
 
-        <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" data-wa="general">
-          <svg class="w-5 h-5 fill-pulse-green" aria-hidden="true"><use href="#i-wa"/></svg>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Activar modo claro">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        </button>
+
+        <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm !hidden sm:!inline-flex" data-wa="general">
+          <svg class="w-5 h-5 fill-ok" aria-hidden="true"><use href="#i-wa"/></svg>
           <span class="sr-only sm:not-sr-only" data-i18n="header.cta">Escribime</span>
         </a>
 
-        <button id="menu-toggle" type="button" class="lg:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full text-ash hover:text-white active:bg-white/5" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-drawer">
+        <button id="menu-toggle" type="button" class="lg:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full text-muted hover:text-fg active:bg-surface" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-drawer">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/>
           </svg>
@@ -133,7 +140,7 @@
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-10">
 
           <div class="max-w-[460px] space-y-4">
-            <p class="text-xl sm:text-2xl font-medium text-white tracking-[-0.03em] leading-snug text-balance" data-i18n-html="hero.lead">
+            <p class="text-xl sm:text-2xl font-medium text-fg tracking-[-0.03em] leading-snug text-balance" data-i18n-html="hero.lead">
               Tu negocio merece una web que <span class="tone">consiga clientes mientras dormís.</span>
             </p>
             <ul class="check-list">
@@ -150,8 +157,7 @@
             </a>
             <a href="#presupuesto" class="btn btn-ghost">
               <span data-i18n="hero.cta2">Armar mi pedido</span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
+              </a>
           </div>
 
         </div>
@@ -161,19 +167,19 @@
     </section>
 
     <!-- Tira de métricas -->
-    <section aria-label="Resultados" data-i18n-attr="aria-label:metrics.label" class="border-y border-graphite bg-black">
+    <section aria-label="Resultados" data-i18n-attr="aria-label:metrics.label" class="border-y border-line bg-bg">
       <div class="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-3 font-mono">
         <div class="metric">
-          <p class="text-4xl font-semibold text-white tabular-nums" data-counter="3" data-suffix="x">3x</p>
-          <p class="text-ash mt-1 text-xs" data-i18n="metrics.1">más consultas por WhatsApp</p>
+          <p class="text-4xl font-semibold text-fg tabular-nums" data-counter="3" data-suffix="x">3x</p>
+          <p class="text-muted mt-1 text-xs" data-i18n="metrics.1">más consultas por WhatsApp</p>
         </div>
         <div class="metric">
-          <p class="text-4xl font-semibold text-cyan-accent tabular-nums" data-counter="100" data-suffix="%">100%</p>
-          <p class="text-ash mt-1 text-xs" data-i18n="metrics.2">diseño propio, cero plantillas</p>
+          <p class="text-4xl font-semibold text-accent tabular-nums" data-counter="100" data-suffix="%">100%</p>
+          <p class="text-muted mt-1 text-xs" data-i18n="metrics.2">diseño propio, cero plantillas</p>
         </div>
         <div class="metric">
-          <p class="text-4xl font-semibold text-pulse-green tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
-          <p class="text-ash mt-1 text-xs" data-i18n="metrics.3">tiempo de carga</p>
+          <p class="text-4xl font-semibold text-ok tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
+          <p class="text-muted mt-1 text-xs" data-i18n="metrics.3">tiempo de carga</p>
         </div>
       </div>
     </section>
@@ -184,11 +190,11 @@
     <section id="proyectos" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32" aria-labelledby="proyectos-title">
 
       <div class="mb-16 max-w-2xl">
-        <p class="section-kicker"><span class="kicker-num">(01)</span> <span data-i18n="projects.kicker">Trabajos reales</span></p>
+        <p class="section-kicker"><span data-i18n="projects.kicker">Trabajos reales</span></p>
         <h2 id="proyectos-title" class="section-title" data-reveal data-i18n-html="projects.title">
           Proyectos que ya están <span class="tone">en producción.</span>
         </h2>
-        <p class="text-ash text-base mt-4 text-pretty" data-i18n="projects.sub">
+        <p class="text-muted text-base mt-4 text-pretty" data-i18n="projects.sub">
           Productos activos que atienden clientes todos los días.
         </p>
       </div>
@@ -213,23 +219,22 @@
           </a>
 
           <div class="lg:col-span-5 space-y-5">
-            <div class="flex items-end justify-between gap-4">
-              <span class="case-index" aria-hidden="true">01</span>
-              <span class="text-xs font-mono text-pulse-green flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span><span data-i18n="projects.live">En producción</span></span>
+            <div class="flex items-center gap-4">
+              <span class="text-xs font-mono text-ok flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span><span data-i18n="projects.live">En producción</span></span>
             </div>
-            <h3 class="text-3xl font-medium text-white tracking-[-0.03em]">Dorear</h3>
-            <p class="font-mono text-xs text-cyan-accent" data-i18n="projects.cat1">Catálogo digital QR · Gastronomía</p>
-            <p class="text-bone/90 leading-relaxed text-pretty" data-i18n="projects.desc1">
-              Carta interactiva que se abre al instante escaneando el QR de la mesa. Reemplaza los PDFs pesados de 20 MB y deja hacer pedidos directos por WhatsApp.
+            <h3 class="text-3xl font-medium text-fg tracking-[-0.03em]" translate="no">Dorear</h3>
+            <p class="font-mono text-xs text-accent" data-i18n="projects.cat1">Catálogo digital QR · Gastronomía</p>
+            <p class="text-fg-soft leading-relaxed text-pretty" data-i18n="projects.desc1">
+              Carta interactiva que se abre al instante escaneando el QR de la mesa. Reemplaza los PDFs pesados de 20&nbsp;MB y deja hacer pedidos directos por WhatsApp.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="tag text-white" data-i18n="projects.tag1a">Carga 0.3s</span>
+              <span class="tag text-fg" data-i18n="projects.tag1a">Carga 0.3s</span>
               <span class="tag" data-i18n="projects.tag1b">Sin PDFs</span>
-              <span class="tag text-pulse-green" data-i18n="projects.tag1c">Pedidos por WhatsApp</span>
+              <span class="tag text-ok" data-i18n="projects.tag1c">Pedidos por WhatsApp</span>
             </div>
             <a href="https://dorear.com.ar" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
               <span data-i18n="projects.visit1">Visitar sitio en vivo</span>
-              <span class="text-cyan-accent" aria-hidden="true">↗</span>
+              <span class="text-accent" aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
@@ -252,23 +257,22 @@
           </a>
 
           <div class="lg:col-span-5 lg:order-1 space-y-5">
-            <div class="flex items-end justify-between gap-4">
-              <span class="case-index" aria-hidden="true">02</span>
-              <span class="text-xs font-mono text-pulse-green flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span><span data-i18n="projects.live">En producción</span></span>
+            <div class="flex items-center gap-4">
+              <span class="text-xs font-mono text-ok flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span><span data-i18n="projects.live">En producción</span></span>
             </div>
-            <h3 class="text-3xl font-medium text-white tracking-[-0.03em]">Splitealo</h3>
-            <p class="font-mono text-xs text-cyan-accent" data-i18n="projects.cat2">Web app · Gastos compartidos</p>
-            <p class="text-bone/90 leading-relaxed text-pretty" data-i18n="projects.desc2">
+            <h3 class="text-3xl font-medium text-fg tracking-[-0.03em]" translate="no">Splitealo</h3>
+            <p class="font-mono text-xs text-accent" data-i18n="projects.cat2">Web app · Gastos compartidos</p>
+            <p class="text-fg-soft leading-relaxed text-pretty" data-i18n="projects.desc2">
               Divide la cuenta entre amigos en segundos, con cálculo en tiempo real. Sin registro y sin descargar nada: funciona directo desde el navegador.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="tag text-white" data-i18n="projects.tag2a">Tiempo real</span>
+              <span class="tag text-fg" data-i18n="projects.tag2a">Tiempo real</span>
               <span class="tag" data-i18n="projects.tag2b">Sin registro</span>
-              <span class="tag text-cyan-accent" data-i18n="projects.tag2c">Sin instalar apps</span>
+              <span class="tag text-accent" data-i18n="projects.tag2c">Sin instalar apps</span>
             </div>
             <a href="https://splitealo.site" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
               <span data-i18n="projects.visit2">Visitar aplicación en vivo</span>
-              <span class="text-cyan-accent" aria-hidden="true">↗</span>
+              <span class="text-accent" aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
@@ -279,50 +283,50 @@
     <!-- ====================================================================
          (02) COMPARATIVA — diff
          ==================================================================== -->
-    <section id="comparativa" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-graphite" aria-labelledby="comparativa-title">
+    <section id="comparativa" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-line" aria-labelledby="comparativa-title">
 
       <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div class="max-w-xl">
-          <p class="section-kicker"><span class="kicker-num">(02)</span> <span data-i18n="bench.kicker">Rendimiento</span></p>
+          <p class="section-kicker"><span data-i18n="bench.kicker">Rendimiento</span></p>
           <h2 id="comparativa-title" class="section-title" data-reveal data-i18n-html="bench.title">
             Código puro <span class="tone">vs. plantilla genérica.</span>
           </h2>
-          <p class="text-ash text-base mt-4 text-pretty" data-i18n="bench.sub">
+          <p class="text-muted text-base mt-4 text-pretty" data-i18n="bench.sub">
             Una base optimizada a mano contra el ecosistema tradicional sobrecargado de plugins.
           </p>
         </div>
 
-        <div id="speedometer" class="speedometer p-4 pr-6 rounded-2xl bg-[#050608] border border-graphite flex items-center gap-4 shrink-0 self-start md:self-auto">
+        <div id="speedometer" class="speedometer p-4 pr-6 rounded-2xl bg-surface border border-line flex items-center gap-4 shrink-0 self-start md:self-auto">
           <svg viewBox="0 0 140 75" class="w-[120px] h-[66px] overflow-visible" aria-hidden="true">
-            <path d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke="#292d30" stroke-width="8" stroke-linecap="round"/>
-            <path class="speed-arc" d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke="#0070f3" stroke-width="8" stroke-linecap="round"/>
+            <path class="speed-track" d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke-width="8" stroke-linecap="round"/>
+            <path class="speed-arc" d="M 15 70 A 55 55 0 0 1 125 70" fill="none" stroke-width="8" stroke-linecap="round"/>
             <g class="speed-needle">
-              <line x1="70" y1="70" x2="70" y2="24" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="70" cy="70" r="6" fill="#00e5ff"/>
+              <line class="speed-needle-line" x1="70" y1="70" x2="70" y2="24" stroke-width="3" stroke-linecap="round"/>
+              <circle class="speed-needle-dot" cx="70" cy="70" r="6"/>
             </g>
           </svg>
           <div>
-            <p class="text-[11px] font-mono text-cyan-accent" data-i18n="bench.speed">Velocidad de apertura</p>
-            <p class="text-3xl font-semibold font-mono text-white tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
+            <p class="text-[11px] font-mono text-accent" data-i18n="bench.speed">Velocidad de apertura</p>
+            <p class="text-3xl font-semibold font-mono text-fg tabular-nums" data-counter="0.4" data-decimals="1" data-suffix="s">0.4s</p>
           </div>
         </div>
       </div>
 
       <div class="diff">
         <div class="diff-head">
-          <span><span class="text-white">git diff</span> <span data-i18n="bench.files">plantilla-wordpress codigo-puro</span></span>
-          <span><span class="text-[#ff9592]">−3</span> <span class="text-neon-blue">+3</span></span>
+          <span><span class="text-fg">git diff</span> <span data-i18n="bench.files">plantilla-wordpress codigo-puro</span></span>
+          <span><span class="text-bad">−3</span> <span class="text-accent-2">+3</span></span>
         </div>
         <div class="diff-cols">
           <div class="diff-col">
-            <div class="diff-file"><span class="text-[#ff9592]" data-i18n="bench.fileA">✕ plantilla-wordpress</span><span class="text-ash" data-i18n="bench.loadA">4.8s de carga</span></div>
+            <div class="diff-file"><span class="text-bad" data-i18n="bench.fileA">✕ plantilla-wordpress</span><span class="text-muted" data-i18n="bench.loadA">4.8s de carga</span></div>
             <div class="diff-row comment"><span class="ln">1</span><span class="sign"></span><span data-i18n="bench.cA">// Problemas típicos de una plantilla</span></div>
             <div class="diff-row del"><span class="ln">2</span><span class="sign">−</span><span data-i18n-html="bench.a1"><strong>Carga lenta (4 a 6s):</strong> decenas de plugins sumando peticiones y frenando el celular.</span></div>
             <div class="diff-row del"><span class="ln">3</span><span class="sign">−</span><span data-i18n-html="bench.a2"><strong>Vulnerabilidades periódicas:</strong> código desactualizado y riesgo de rotura en cada update.</span></div>
             <div class="diff-row del"><span class="ln">4</span><span class="sign">−</span><span data-i18n-html="bench.a3"><strong>Fuga de clientes:</strong> más de la mitad de las visitas en celular abandona si la web tarda más de 3s.</span></div>
           </div>
           <div class="diff-col">
-            <div class="diff-file"><span class="text-neon-blue" data-i18n="bench.fileB">✓ codigo-puro</span><span class="text-pulse-green" data-i18n="bench.loadB">0.4s de carga</span></div>
+            <div class="diff-file"><span class="text-accent-2" data-i18n="bench.fileB">✓ codigo-puro</span><span class="text-ok" data-i18n="bench.loadB">0.4s de carga</span></div>
             <div class="diff-row comment"><span class="ln">1</span><span class="sign"></span><span data-i18n="bench.cB">// Cómo trabajo yo</span></div>
             <div class="diff-row add"><span class="ln">2</span><span class="sign">+</span><span data-i18n-html="bench.b1"><strong>Apertura instantánea:</strong> HTML semántico y CSS liviano, sin nada que sobre.</span></div>
             <div class="diff-row add"><span class="ln">3</span><span class="sign">+</span><span data-i18n-html="bench.b2"><strong>Cero dependencias frágiles:</strong> no se rompe solo ni te ata a cuotas mensuales de plugins.</span></div>
@@ -335,11 +339,11 @@
     <!-- ====================================================================
          (03) SERVICIOS — sección clara
          ==================================================================== -->
-    <section id="servicios" class="section-light" aria-labelledby="servicios-title">
+    <section id="servicios" class="border-t border-line" aria-labelledby="servicios-title">
       <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
 
         <div class="mb-12 max-w-2xl">
-          <p class="section-kicker"><span class="kicker-num">(03)</span> <span data-i18n="services.kicker">Qué puedo construir</span></p>
+          <p class="section-kicker"><span data-i18n="services.kicker">Qué puedo construir</span></p>
           <h2 id="servicios-title" class="section-title" data-reveal data-i18n-html="services.title">
             Todo lo que tu negocio necesita <span class="tone">para salir al aire.</span>
           </h2>
@@ -347,47 +351,44 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5" data-spotlight>
 
-          <article class="spot-card" style="--accent: 0, 112, 243">
+          <article class="spot-card" style="--spot: 0, 112, 243">
             <div class="space-y-4">
-              <span class="spot-num" aria-hidden="true">01</span>
               <h3 class="text-xl font-medium tracking-[-0.02em]" data-i18n="services.t1">Menús y catálogos QR</h3>
               <p class="text-sm leading-relaxed text-pretty spot-text" data-i18n="services.d1">
                 Para gastronomía y showrooms. La carta o el catálogo se ve al instante, con fotos en alta calidad y pedidos que llegan ordenados a tu WhatsApp.
               </p>
             </div>
             <div class="pt-8">
-              <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-dark w-full" data-wa="qr">
-                <span data-i18n="services.c1">Cotizar catálogo QR</span><span aria-hidden="true">→</span>
+              <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="qr">
+                <span data-i18n="services.c1">Cotizar catálogo QR</span>
               </a>
             </div>
           </article>
 
-          <article class="spot-card" style="--accent: 22, 163, 98">
+          <article class="spot-card" style="--spot: 22, 163, 98">
             <div class="space-y-4">
-              <span class="spot-num" aria-hidden="true">02</span>
               <h3 class="text-xl font-medium tracking-[-0.02em]" data-i18n="services.t2">Landing pages</h3>
               <p class="text-sm leading-relaxed text-pretty spot-text" data-i18n="services.d2">
                 Para profesionales, servicios y lanzamientos. Estructura pensada para vender, velocidad récord y llamados a la acción claros para captar clientes.
               </p>
             </div>
             <div class="pt-8">
-              <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-dark w-full" data-wa="landing">
-                <span data-i18n="services.c2">Cotizar landing page</span><span aria-hidden="true">→</span>
+              <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="landing">
+                <span data-i18n="services.c2">Cotizar landing page</span>
               </a>
             </div>
           </article>
 
-          <article class="spot-card" style="--accent: 2, 132, 199">
+          <article class="spot-card" style="--spot: 2, 132, 199">
             <div class="space-y-4">
-              <span class="spot-num" aria-hidden="true">03</span>
               <h3 class="text-xl font-medium tracking-[-0.02em]" data-i18n="services.t3">Plataformas web</h3>
               <p class="text-sm leading-relaxed text-pretty spot-text" data-i18n="services.d3">
                 Para lo que una plantilla no puede resolver: calculadoras, cotizadores online, pagos y lógica en tiempo real.
               </p>
             </div>
             <div class="pt-8">
-              <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-dark w-full" data-wa="platform">
-                <span data-i18n="services.c3">Cotizar plataforma</span><span aria-hidden="true">→</span>
+              <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline w-full" data-wa="platform">
+                <span data-i18n="services.c3">Cotizar plataforma</span>
               </a>
             </div>
           </article>
@@ -399,10 +400,10 @@
     <!-- ====================================================================
          (04) CÓMO TRABAJAMOS — dos formas + etapas
          ==================================================================== -->
-    <section id="metodologia" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32" aria-labelledby="metodologia-title">
+    <section id="metodologia" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 border-t border-line" aria-labelledby="metodologia-title">
 
       <div class="mb-12 max-w-2xl">
-        <p class="section-kicker"><span class="kicker-num">(04)</span> <span data-i18n="process.kicker">Cómo trabajamos</span></p>
+        <p class="section-kicker"><span data-i18n="process.kicker">Cómo trabajamos</span></p>
         <h2 id="metodologia-title" class="section-title" data-reveal data-i18n-html="process.title">
           Dos formas de trabajar. <span class="tone">Elegí la que te quede cómoda.</span>
         </h2>
@@ -414,15 +415,15 @@
             <span class="way-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg>
             </span>
-            <span class="font-mono text-xs text-ash">A</span>
+            <span class="font-mono text-xs text-muted">A</span>
           </div>
-          <h3 class="text-2xl font-medium text-white tracking-[-0.03em] mt-6" data-i18n="process.aTitle">Vos traés la idea</h3>
-          <p class="text-bone/80 leading-relaxed mt-3 text-pretty" data-i18n="process.aText">
+          <h3 class="text-2xl font-medium text-fg tracking-[-0.03em] mt-6" data-i18n="process.aTitle">Vos traés la idea</h3>
+          <p class="text-fg-soft leading-relaxed mt-3 text-pretty" data-i18n="process.aText">
             Me contás qué imaginás y lo diseño a partir de eso. Lo ajustamos juntos hasta que quede como lo pensaste.
           </p>
-          <p class="text-xs text-ash mt-4 leading-relaxed"><span class="font-mono text-cyan-accent" data-i18n="process.ideal">Ideal si</span> <span data-i18n="process.aIdeal">ya tenés una referencia, un estilo o algo concreto en mente.</span></p>
+          <p class="text-xs text-muted mt-4 leading-relaxed"><span class="font-mono text-accent" data-i18n="process.ideal">Ideal si</span> <span data-i18n="process.aIdeal">ya tenés una referencia, un estilo o algo concreto en mente.</span></p>
           <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-outline mt-8 self-start" data-wa="wayA">
-            <span data-i18n="process.choose">Elegir esta forma</span><span class="text-cyan-accent" aria-hidden="true">→</span>
+            <span data-i18n="process.choose">Elegir esta forma</span>
           </a>
         </article>
 
@@ -431,39 +432,39 @@
             <span class="way-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
             </span>
-            <span class="font-mono text-xs text-ash">B</span>
+            <span class="font-mono text-xs text-muted">B</span>
           </div>
-          <h3 class="text-2xl font-medium text-white tracking-[-0.03em] mt-6" data-i18n="process.bTitle">Yo te propongo</h3>
-          <p class="text-bone/80 leading-relaxed mt-3 text-pretty" data-i18n="process.bText">
+          <h3 class="text-2xl font-medium text-fg tracking-[-0.03em] mt-6" data-i18n="process.bTitle">Yo te propongo</h3>
+          <p class="text-fg-soft leading-relaxed mt-3 text-pretty" data-i18n="process.bText">
             Me contás de tu negocio y te presento una propuesta completa pensada para vender. Vos solo me decís qué cambiar.
           </p>
-          <p class="text-xs text-ash mt-4 leading-relaxed"><span class="font-mono text-cyan-accent" data-i18n="process.ideal">Ideal si</span> <span data-i18n="process.bIdeal">no tenés una idea clara y preferís que te guíe.</span></p>
+          <p class="text-xs text-muted mt-4 leading-relaxed"><span class="font-mono text-accent" data-i18n="process.ideal">Ideal si</span> <span data-i18n="process.bIdeal">no tenés una idea clara y preferís que te guíe.</span></p>
           <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="btn btn-wa mt-8 self-start" data-wa="wayB">
-            <span data-i18n="process.choose">Elegir esta forma</span><span aria-hidden="true">→</span>
+            <span data-i18n="process.choose">Elegir esta forma</span>
           </a>
         </article>
       </div>
 
-      <h3 class="font-mono text-xs text-ash mt-20 mb-10" data-i18n="process.stepsTitle">En los dos casos, el camino es el mismo:</h3>
+      <h3 class="font-mono text-xs text-muted mt-20 mb-10" data-i18n="process.stepsTitle">En los dos casos, el camino es el mismo:</h3>
       <ol class="timeline">
         <li style="--dot: #0070f3">
-          <p class="text-xs font-mono text-cyan-accent" data-i18n="process.s1k">Etapa 01</p>
-          <h4 class="text-lg font-medium text-white mt-1" data-i18n="process.s1t">Diagnóstico y dirección de arte</h4>
-          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s1d">
+          <p class="text-xs font-mono text-accent" data-i18n="process.s1k">Etapa 01</p>
+          <h4 class="text-lg font-medium text-fg mt-1" data-i18n="process.s1t">Diagnóstico y dirección de arte</h4>
+          <p class="text-sm text-muted mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s1d">
             Analizamos tu negocio, definimos la estructura y acordamos la identidad visual antes de escribir una línea de código.
           </p>
         </li>
         <li style="--dot: #38bdf8">
-          <p class="text-xs font-mono text-cyan-accent" data-i18n="process.s2k">Etapa 02</p>
-          <h4 class="text-lg font-medium text-white mt-1" data-i18n="process.s2t">Desarrollo con código puro</h4>
-          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s2d">
+          <p class="text-xs font-mono text-accent" data-i18n="process.s2k">Etapa 02</p>
+          <h4 class="text-lg font-medium text-fg mt-1" data-i18n="process.s2t">Desarrollo con código puro</h4>
+          <p class="text-sm text-muted mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s2d">
             Construcción a mano, cuidando velocidad, compatibilidad con todos los dispositivos y cada detalle. Ves los avances antes de publicar.
           </p>
         </li>
         <li style="--dot: #3ad389">
-          <p class="text-xs font-mono text-pulse-green" data-i18n="process.s3k">Etapa 03</p>
-          <h4 class="text-lg font-medium text-white mt-1" data-i18n="process.s3t">Lanzamiento y conexión a WhatsApp</h4>
-          <p class="text-sm text-ash mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s3d">
+          <p class="text-xs font-mono text-ok" data-i18n="process.s3k">Etapa 03</p>
+          <h4 class="text-lg font-medium text-fg mt-1" data-i18n="process.s3t">Lanzamiento y conexión a WhatsApp</h4>
+          <p class="text-sm text-muted mt-2 leading-relaxed text-pretty max-w-sm" data-i18n="process.s3d">
             Dominio conectado, prueba de velocidad en vivo y los canales de contacto activos desde el primer día.
           </p>
         </li>
@@ -473,11 +474,11 @@
     <!-- ====================================================================
          (05) PREGUNTAS FRECUENTES — sección clara
          ==================================================================== -->
-    <section id="faq" class="section-light" aria-labelledby="faq-title">
+    <section id="faq" class="border-t border-line" aria-labelledby="faq-title">
       <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-10">
 
         <div class="lg:col-span-4">
-          <p class="section-kicker"><span class="kicker-num">(05)</span> <span data-i18n="faq.kicker">Preguntas frecuentes</span></p>
+          <p class="section-kicker"><span data-i18n="faq.kicker">Preguntas frecuentes</span></p>
           <h2 id="faq-title" class="section-title" data-reveal data-i18n-html="faq.title">
             Lo que todos <span class="tone">me preguntan.</span>
           </h2>
@@ -520,11 +521,11 @@
       <div class="final-cta grid grid-cols-1 lg:grid-cols-12 gap-10 px-6 py-12 sm:px-12 sm:py-16">
 
         <div class="lg:col-span-5 space-y-6">
-          <p class="section-kicker"><span class="kicker-num">(06)</span> <span data-i18n="quote.kicker">Presupuesto</span></p>
+          <p class="section-kicker"><span data-i18n="quote.kicker">Presupuesto</span></p>
           <h2 id="cta-title" class="section-title !text-4xl sm:!text-6xl" data-reveal data-i18n-html="quote.title">
             ¿Tenés un proyecto <span class="tone">en mente?</span>
           </h2>
-          <p class="text-bone/80 text-base sm:text-lg leading-relaxed text-pretty" data-i18n="quote.sub">
+          <p class="text-fg-soft text-base sm:text-lg leading-relaxed text-pretty" data-i18n="quote.sub">
             Armá tu pedido en 30 segundos y se abre WhatsApp con todo listo para enviar. Sin formularios eternos.
           </p>
           <ul class="check-list">
@@ -535,7 +536,7 @@
         </div>
 
         <form id="quote-form" class="quote-form lg:col-span-7" novalidate>
-          <p class="font-mono text-[11px] text-[#55607a]" data-i18n="form.kicker">Armá tu pedido en 30 segundos</p>
+          <p class="font-mono text-[11px] text-muted" data-i18n="form.kicker">Armá tu pedido en 30 segundos</p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <label class="field">
@@ -568,7 +569,7 @@
             <svg aria-hidden="true"><use href="#i-wa"/></svg>
             <span data-i18n="form.submit">Enviar pedido por WhatsApp</span>
           </button>
-          <p class="font-mono text-[11px] text-center text-[#55607a]" data-i18n="form.note">Se abre WhatsApp con el pedido listo. Esta página no guarda nada.</p>
+          <p class="font-mono text-[11px] text-center text-muted" data-i18n="form.note">Se abre WhatsApp con el pedido listo. Esta página no guarda nada.</p>
         </form>
 
       </div>
@@ -576,27 +577,27 @@
 
   </main>
 
-  <footer class="border-t border-graphite pt-16 text-sm" style="padding-bottom: max(2rem, env(safe-area-inset-bottom))">
+  <footer class="border-t border-line pt-16 text-sm" style="padding-bottom: max(2rem, env(safe-area-inset-bottom))">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
         <div class="md:col-span-6 space-y-3">
-          <p class="font-mono font-semibold text-white">by.nicocieplak</p>
-          <p class="text-ash max-w-sm" data-i18n="footer.tag">Webs y plataformas a medida, hechas con código puro.</p>
+          <p class="font-mono font-semibold text-fg" translate="no">by.nicocieplak</p>
+          <p class="text-muted max-w-sm" data-i18n="footer.tag">Webs y plataformas a medida, hechas con código puro.</p>
         </div>
         <nav class="md:col-span-3 flex flex-col gap-1" aria-label="Pie de página" data-i18n-attr="aria-label:footer.navLabel">
-          <p class="font-mono text-xs text-ash mb-2" data-i18n="footer.explore">Explorar</p>
+          <p class="font-mono text-xs text-muted mb-2" data-i18n="footer.explore">Explorar</p>
           <a href="#proyectos" class="footer-link" data-i18n="nav.projects">Proyectos</a>
           <a href="#servicios" class="footer-link" data-i18n="nav.services">Servicios</a>
           <a href="#metodologia" class="footer-link" data-i18n="nav.process">Proceso</a>
           <a href="#faq" class="footer-link" data-i18n="nav.faq">Preguntas</a>
         </nav>
         <div class="md:col-span-3 flex flex-col gap-1">
-          <p class="font-mono text-xs text-ash mb-2" data-i18n="footer.contact">Contacto</p>
+          <p class="font-mono text-xs text-muted mb-2" data-i18n="footer.contact">Contacto</p>
           <a href="https://wa.me/5493410000000" target="_blank" rel="noopener noreferrer" class="footer-link" data-wa="general">WhatsApp</a>
           <a href="#presupuesto" class="footer-link" data-i18n="nav.quote">Presupuesto</a>
         </div>
       </div>
-      <div class="flex items-center justify-between gap-4 border-t border-graphite pt-6 text-xs text-ash font-mono">
+      <div class="flex items-center justify-between gap-4 border-t border-line pt-6 text-xs text-muted font-mono">
         <p>© <span id="year">2026</span> by.nicocieplak, Argentina</p>
         <a href="#top" class="to-top" aria-label="Volver arriba" data-i18n-attr="aria-label:footer.top">↑</a>
       </div>
@@ -609,7 +610,7 @@
     <span class="wa-float-dot" aria-hidden="true"></span>
   </a>
 
-  <script src="assets/js/i18n.js?v=20261105e" defer></script>
-  <script src="assets/js/main.js?v=20261105e" defer></script>
+  <script src="assets/js/i18n.js?v=20261105f" defer></script>
+  <script src="assets/js/main.js?v=20261105f" defer></script>
 </body>
 </html>

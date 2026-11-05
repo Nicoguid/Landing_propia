@@ -12,7 +12,7 @@ const CONFIG = {
 // Cambiá este valor cada vez que subas cambios: obliga al navegador a bajar
 // la versión nueva de la cabeza 3D en lugar de usar la que tiene guardada.
 // (Usá el mismo valor en los ?v= de index.html)
-const ASSET_VERSION = '20261105e';
+const ASSET_VERSION = '20261105f';
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const I18N = window.I18N || { en: {}, ui: { es: {}, en: {} }, whatsapp: { es: null, en: null } };
@@ -20,6 +20,7 @@ let currentLang = 'es';
 
 document.addEventListener('DOMContentLoaded', () => {
   initI18n();          // primero: guarda los textos en español antes de tocar nada
+  initTheme();
   initReveal();
   initHeader();
   initMobileMenu();
@@ -65,7 +66,10 @@ function initI18n() {
   // ?lang=en en la URL tiene prioridad (útil para compartir el link en inglés)
   const fromUrl = new URLSearchParams(location.search).get('lang');
   const saved = storage.get('lang');
-  const initial = ['es', 'en'].includes(fromUrl) ? fromUrl : ['es', 'en'].includes(saved) ? saved : 'es';
+  // Sin preferencia guardada: si el navegador no está en español, arranca en inglés
+  const browserLangs = navigator.languages || [navigator.language || 'es'];
+  const fromBrowser = browserLangs.some((l) => /^es\b/i.test(l)) ? 'es' : 'en';
+  const initial = ['es', 'en'].includes(fromUrl) ? fromUrl : ['es', 'en'].includes(saved) ? saved : fromBrowser;
   if (initial !== 'es') setLang(initial, false);
 }
 
@@ -107,8 +111,35 @@ function setLang(lang, remember) {
   const menu = document.getElementById('menu-toggle');
   if (menu) menu.setAttribute('aria-label', menu.getAttribute('aria-expanded') === 'true' ? t('menuClose') : t('menuOpen'));
 
+  updateThemeLabel();
   initWhatsAppLinks();
   if (remember) storage.set('lang', lang);
+}
+
+/* 1b. Modo oscuro / claro ------------------------------------------------------
+   Oscuro es el predeterminado. El <head> ya aplicó el tema guardado antes de
+   pintar (para evitar un parpadeo); acá solo se maneja el botón. */
+let heroHead = null;
+const THEME_BG = { dark: '#000000', light: '#f6f8fb' };
+const getTheme = () => (document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+
+function initTheme() {
+  const btn = document.getElementById('theme-toggle');
+  applyTheme(getTheme(), false);
+  btn?.addEventListener('click', () => applyTheme(getTheme() === 'dark' ? 'light' : 'dark', true));
+}
+
+function applyTheme(theme, remember) {
+  document.documentElement.dataset.theme = theme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_BG[theme]);
+  updateThemeLabel();
+  heroHead?.setTheme?.(theme);
+  if (remember) storage.set('theme', theme);
+}
+
+function updateThemeLabel() {
+  const btn = document.getElementById('theme-toggle');
+  if (btn) btn.setAttribute('aria-label', getTheme() === 'dark' ? t('toLight') : t('toDark'));
 }
 
 /* 2. Títulos que aparecen palabra por palabra -------------------------------- */
@@ -310,7 +341,7 @@ function loadHeroHead() {
     script.async = true;
     script.onload = () => {
       try {
-        window.HeroHead.mountHeroHead(mount);
+        heroHead = window.HeroHead.mountHeroHead(mount, getTheme());
       } catch (err) {
         console.warn('[hero-head] no se pudo iniciar', err);
       }

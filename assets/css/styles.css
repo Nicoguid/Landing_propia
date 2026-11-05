@@ -316,7 +316,7 @@ body {
   margin-top: 4vh;
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-weight: 500;
-  font-size: clamp(48px, 10.9vw, 190px); /* calibrado para "WEBS QUE VENDEN" (15 letras) */
+  font-size: clamp(48px, 11.6vw, 200px); /* calibrado para "HECHO A MEDIDA" (14 letras) */
   line-height: 0.82;
   letter-spacing: -0.04em;
   text-transform: uppercase;
@@ -370,7 +370,7 @@ body {
 @media (max-width: 767px) {
   .hero-title {
     white-space: normal;
-    font-size: 17.5vw;
+    font-size: 20vw;
     line-height: 0.86;
     margin-top: 1vh;
   }

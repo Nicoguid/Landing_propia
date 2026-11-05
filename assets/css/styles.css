@@ -5,8 +5,8 @@
 
 /* ---------- Fuentes self-hosted (sin Google Fonts = sin bloqueo de render) ---------- */
 @font-face {
-  font-family: 'Inter';
-  src: url('../fonts/inter-var.woff2') format('woff2');
+  font-family: 'Geist';
+  src: url('../fonts/geist-var.woff2') format('woff2');
   font-weight: 100 900;
   font-display: swap;
 }
@@ -68,8 +68,7 @@ html {
 body {
   background-color: var(--black);
   color: var(--bone);
-  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
   overflow-x: clip;
 }
@@ -206,9 +205,9 @@ body {
   justify-content: center;
   gap: 10px;
   padding: 10px 20px;
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   position: relative;
@@ -243,23 +242,34 @@ body {
   transform: translateY(-2px);
 }
 
+.btn-sm { min-height: 40px; padding: 8px 16px; }
+@media (max-width: 639px) { .btn-sm { min-width: 44px; min-height: 44px; padding: 8px 12px; } }
+
+/* WhatsApp: verde sólido con brillo (texto oscuro para que el contraste sea AA) */
 .btn-wa {
   min-height: 48px;
-  padding: 12px 22px;
-  color: #eafff2;
+  padding: 12px 24px;
+  color: #03140a;
   font-size: 0.9375rem;
-  background-color: rgba(8, 40, 22, 0.85);
-  border: 1px solid rgba(58, 211, 137, 0.45);
-  box-shadow: 0 0 0 0 rgba(58, 211, 137, 0), inset 0 1px 0 rgba(58, 211, 137, 0.15);
+  font-weight: 700;
+  background-color: #25d366;
+  border: 0;
+  box-shadow: 0 10px 28px -8px rgba(37, 211, 102, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
-.btn-wa svg { width: 22px; height: 22px; fill: var(--green); }
+.btn-wa svg { width: 22px; height: 22px; fill: currentColor; }
 .btn-wa:hover {
-  color: var(--white);
-  background-color: rgba(10, 56, 30, 0.95);
-  border-color: rgba(58, 211, 137, 0.8);
-  box-shadow: 0 0 28px -4px rgba(58, 211, 137, 0.45), inset 0 1px 0 rgba(58, 211, 137, 0.25);
+  background-color: #2ee673;
+  box-shadow: 0 14px 34px -8px rgba(37, 211, 102, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
 }
+
+/* Botón oscuro para secciones claras */
+.btn-dark {
+  color: #f4f3ee;
+  background-color: #0a0f1a;
+  border: 1px solid #0a0f1a;
+}
+.btn-dark:hover { background-color: #1a2233; transform: translateY(-2px); }
 
 .btn-ghost {
   color: var(--ash);
@@ -316,7 +326,7 @@ body {
   width: 100%;
   max-width: 1440px;
   margin: 2vh auto 0;
-  padding: 0.12em 4vw 0.06em; /* aire arriba para la tilde de la Ñ (background-clip recorta lo que sale de la caja) */
+  padding: 0.12em 4vw 0.06em;
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-weight: 500;
   font-size: clamp(44px, 8.4vw, 150px); /* calibrado para 2 líneas de ~15 letras */
@@ -325,12 +335,19 @@ body {
   text-transform: uppercase;
   white-space: nowrap;
   pointer-events: none;
-  color: transparent;
-  background: linear-gradient(180deg, #f4f6f8 0%, #9aa1a8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
   user-select: none;
 }
+
+/* Cada línea con su propio degradé: blanco arriba, celeste de la marca abajo */
+.hero-line {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  padding-top: 0.12em;       /* aire para la tilde de la Ñ */
+  margin-top: -0.12em;
+}
+.hero-line--1 { background-image: linear-gradient(180deg, #f6f7f9 10%, #a7adb4 100%); }
+.hero-line--2 { background-image: linear-gradient(100deg, #7dd3fc 0%, #38bdf8 40%, #00e5ff 100%); }
 
 /* Primera línea a la izquierda, segunda a la derecha */
 .hero-line { display: block; }
@@ -396,17 +413,79 @@ body {
 .section-kicker {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-size: 0.75rem;
-  color: var(--cyan);
+  color: var(--ash);
 }
 .section-kicker::before {
   content: '';
-  width: 18px;
-  height: 1px;
-  background: currentColor;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
 }
+.kicker-num { color: var(--white); font-weight: 600; }
+
+/* Títulos de sección: dos colores */
+.section-title {
+  margin-top: 14px;
+  font-size: clamp(2rem, 4.6vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: var(--white);
+  text-wrap: balance;
+}
+.tone { color: var(--cyan); }
+
+/* Aparición palabra por palabra (main.js parte el título en palabras) */
+.w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.wi { display: inline-block; transform: translateY(105%); transition: transform 0.8s var(--ease-out); transition-delay: calc(var(--i, 0) * 45ms); }
+[data-reveal].is-in .wi { transform: none; }
+
+/* Lista con tildes */
+.check-list { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.875rem; color: var(--bone); }
+.check-list li { display: inline-flex; align-items: center; gap: 8px; list-style: none; }
+.check-list svg { width: 18px; height: 18px; color: var(--cyan); flex-shrink: 0; }
+
+/* Selector de idioma ES / EN */
+.lang-toggle {
+  position: relative;
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+}
+.lang-toggle button {
+  position: relative;
+  z-index: 1;
+  min-width: 40px;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--ash);
+  transition: color 0.2s ease-out;
+}
+.lang-toggle button:hover { color: var(--white); }
+.lang-toggle button[aria-pressed="true"] { color: #03131c; }
+.lang-thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: var(--cyan);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
+  transition: transform 0.25s var(--ease-out);
+}
+.lang-toggle[data-active="en"] .lang-thumb { transform: translateX(100%); }
 
 /* Tira de métricas */
 .metric {
@@ -473,7 +552,7 @@ body {
 .case:hover .browser-viewport img { transform: scale(1.03); }
 
 .case-index {
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; /* Geist Mono tiene el 0 tachado */
+  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; /* Geist Mono tiene el 0 tachado */
   font-size: clamp(64px, 9vw, 120px);
   line-height: 0.8;
   font-weight: 300;
@@ -590,9 +669,11 @@ body {
 }
 .spot-card:hover::before { opacity: 1; }
 .spot-card > * { position: relative; }
+.spot-card h3 { color: var(--white); }
+.spot-text { color: var(--ash); }
 
 .spot-num {
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
   font-size: 56px;
   line-height: 1;
   font-weight: 300;
@@ -666,12 +747,219 @@ body {
 }
 
 /* ==========================================================================
+   SECCIONES CLARAS (alternan con las oscuras)
+   ========================================================================== */
+.section-light {
+  background: #f4f3ee;
+  color: #0a0f1a;
+}
+.section-light .section-kicker { color: #4b5563; }
+.section-light .kicker-num { color: #0a0f1a; }
+.section-light .section-kicker::before { background: var(--blue); box-shadow: none; }
+.section-light .section-title { color: #0a0f1a; }
+.section-light .tone { color: var(--blue); }
+.section-light .spot-text { color: #4b5563; }
+.section-light .spot-card {
+  background: #ffffff;
+  border-color: #e3e1d9;
+  box-shadow: 0 1px 0 rgba(10, 15, 26, 0.04);
+}
+.section-light .spot-card h3 { color: #0a0f1a; }
+.section-light .spot-card:hover { box-shadow: 0 24px 50px -24px rgba(10, 15, 26, 0.25); }
+.section-light .spot-num { -webkit-text-stroke: 1px rgba(var(--accent), 0.7); }
+.section-light :focus-visible { outline-color: var(--blue); }
+
+/* ==========================================================================
+   DOS FORMAS DE TRABAJAR
+   ========================================================================== */
+.way-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  border: 1px solid var(--hairline);
+  border-radius: 24px;
+  background: #050608;
+}
+.way-card--accent {
+  border-color: rgba(56, 189, 248, 0.35);
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgba(0, 112, 243, 0.28), transparent 70%),
+    #06101d;
+}
+.way-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: #03131c;
+  background: var(--cyan);
+}
+.way-card--accent .way-icon { background: var(--neon); }
+.way-icon svg { width: 22px; height: 22px; }
+
+/* ==========================================================================
+   PREGUNTAS FRECUENTES (acordeón nativo <details>)
+   ========================================================================== */
+.faq-list { border-top: 1px solid #dcd9cf; }
+.faq-item { border-bottom: 1px solid #dcd9cf; }
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 44px;
+  padding: 22px 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.375rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #c9c6bb;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out, transform 0.25s var(--ease-out);
+}
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: #0a0f1a;
+  transform: translate(-50%, -50%);
+}
+.faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-item summary:hover .faq-icon { border-color: #0a0f1a; }
+.faq-item[open] .faq-icon { transform: rotate(45deg); background: #0a0f1a; border-color: #0a0f1a; }
+.faq-item[open] .faq-icon::before, .faq-item[open] .faq-icon::after { background: #f4f3ee; }
+.faq-item p { padding: 0 52px 24px 0; color: #4b5563; line-height: 1.65; max-width: 62ch; }
+
+/* ==========================================================================
+   FORMULARIO "ARMÁ TU PEDIDO"
+   ========================================================================== */
+.quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 28px;
+  border-radius: 20px;
+  background: #f4f3ee;
+  color: #0a0f1a;
+  box-shadow: 0 30px 80px -30px rgba(0, 112, 243, 0.5);
+}
+@media (min-width: 640px) { .quote-form { padding: 36px; } }
+.field { display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; font-weight: 600; }
+.field em { font-style: normal; font-weight: 400; color: #6b7280; font-size: 0.8125rem; }
+.field input {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d6d3c8;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0a0f1a;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+.field input::placeholder { color: #8b8f98; }
+.field input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.chips legend { width: 100%; margin-bottom: 10px; font-size: 0.9375rem; font-weight: 600; }
+.chips label { position: relative; }
+.chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chips span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid #d6d3c8;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-out, border-color 0.15s ease-out, color 0.15s ease-out;
+}
+.chips label:hover span { border-color: #0a0f1a; }
+.chips input:checked + span { background: #0a0f1a; border-color: #0a0f1a; color: #f4f3ee; }
+.chips input:focus-visible + span { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* ==========================================================================
+   FOOTER + BOTÓN FLOTANTE
+   ========================================================================== */
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  color: var(--bone);
+  transition: color 0.15s ease-out;
+}
+.footer-link:hover { color: var(--cyan); }
+.to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 1rem;
+  transition: border-color 0.15s ease-out, transform 0.2s var(--ease-out);
+}
+.to-top:hover { border-color: var(--cyan); transform: translateY(-3px); }
+
+.wa-float {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff;
+  box-shadow: 0 12px 30px -6px rgba(37, 211, 102, 0.6);
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.25s ease-out, transform 0.25s var(--ease-out);
+}
+.wa-float.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.wa-float:hover { transform: scale(1.06); }
+.wa-float svg { width: 32px; height: 32px; fill: currentColor; }
+.wa-float-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background: #ff4d4f;
+}
+
+/* ==========================================================================
    MOVIMIENTO REDUCIDO
    ========================================================================== */
 /* Solo se apaga el movimiento automático o grande. Los hovers (cambios de color,
    bordes, el brillo de las tarjetas) siguen funcionando porque los dispara el usuario. */
 @media (prefers-reduced-motion: reduce) {
   .live-dot::after { animation: none; opacity: 0; }
+  .wi { transform: none !important; transition: none; }
+  .lang-thumb { transition: none; }
   .btn::before { display: none; }
   .speed-needle, .speed-arc { transition: none; }
   .case:hover .browser-viewport img { transform: none; }

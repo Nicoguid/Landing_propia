@@ -38,7 +38,7 @@ window.I18N = {
     'projects.title': 'Projects already <span class="tone">live in production.</span>',
     'projects.sub': 'Active products serving customers every day.',
     'projects.open1': 'Open dorear.com.ar in a new tab',
-    'projects.alt1': 'Dorear page showing the daily set menu and menu categories',
+    'projects.video1': 'Video walkthrough of the Dorear digital menu',
     'projects.live': 'Live',
     'projects.cat1': 'QR digital menu · Restaurants',
     'projects.desc1': 'An interactive menu that opens instantly when you scan the QR code on the table. It replaces heavy 20\u00a0MB PDFs and lets customers order directly via WhatsApp.',
@@ -47,7 +47,7 @@ window.I18N = {
     'projects.tag1c': 'WhatsApp orders',
     'projects.visit1': 'Visit live site',
     'projects.open2': 'Open splitealo.site in a new tab',
-    'projects.alt2': 'Splitealo home page: split the bill in seconds',
+    'projects.video2': 'Video walkthrough of the Splitealo home page',
     'projects.cat2': 'Web app · Shared expenses',
     'projects.desc2': 'Split the bill with friends in seconds, with real-time calculations. No sign-up and nothing to download: it runs right in the browser.',
     'projects.tag2a': 'Real time',
@@ -153,8 +153,8 @@ window.I18N = {
 
   // Textos que arma el JS (no están en el HTML)
   ui: {
-    es: { menuOpen: 'Abrir menú', menuClose: 'Cerrar menú', toLight: 'Activar modo claro', toDark: 'Activar modo oscuro' },
-    en: { menuOpen: 'Open menu', menuClose: 'Close menu', toLight: 'Switch to light mode', toDark: 'Switch to dark mode' },
+    es: { menuOpen: 'Abrir menú', menuClose: 'Cerrar menú', videoPause: 'Pausar video', videoPlay: 'Reproducir video' },
+    en: { menuOpen: 'Open menu', menuClose: 'Close menu', videoPause: 'Pause video', videoPlay: 'Play video' },
   },
 
   // Mensajes de WhatsApp según el botón (data-wa="clave")

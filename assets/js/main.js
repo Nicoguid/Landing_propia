@@ -12,7 +12,7 @@ const CONFIG = {
 // Cambiá este valor cada vez que subas cambios: obliga al navegador a bajar
 // la versión nueva de la cabeza 3D en lugar de usar la que tiene guardada.
 // (Usá el mismo valor en los ?v= de index.html)
-const ASSET_VERSION = '20261105f';
+const ASSET_VERSION = '20261105g';
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const I18N = window.I18N || { en: {}, ui: { es: {}, en: {} }, whatsapp: { es: null, en: null } };
@@ -20,12 +20,13 @@ let currentLang = 'es';
 
 document.addEventListener('DOMContentLoaded', () => {
   initI18n();          // primero: guarda los textos en español antes de tocar nada
-  initTheme();
   initReveal();
   initHeader();
   initMobileMenu();
   initWhatsAppLinks();
   initQuoteForm();
+  initSmoothScroll();
+  initCaseVideos();
   initFloatingWhatsApp();
   initCounters();
   initSpeedometer();
@@ -111,36 +112,11 @@ function setLang(lang, remember) {
   const menu = document.getElementById('menu-toggle');
   if (menu) menu.setAttribute('aria-label', menu.getAttribute('aria-expanded') === 'true' ? t('menuClose') : t('menuOpen'));
 
-  updateThemeLabel();
+  updateVideoLabels();
   initWhatsAppLinks();
   if (remember) storage.set('lang', lang);
 }
 
-/* 1b. Modo oscuro / claro ------------------------------------------------------
-   Oscuro es el predeterminado. El <head> ya aplicó el tema guardado antes de
-   pintar (para evitar un parpadeo); acá solo se maneja el botón. */
-let heroHead = null;
-const THEME_BG = { dark: '#000000', light: '#f6f8fb' };
-const getTheme = () => (document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
-
-function initTheme() {
-  const btn = document.getElementById('theme-toggle');
-  applyTheme(getTheme(), false);
-  btn?.addEventListener('click', () => applyTheme(getTheme() === 'dark' ? 'light' : 'dark', true));
-}
-
-function applyTheme(theme, remember) {
-  document.documentElement.dataset.theme = theme;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_BG[theme]);
-  updateThemeLabel();
-  heroHead?.setTheme?.(theme);
-  if (remember) storage.set('theme', theme);
-}
-
-function updateThemeLabel() {
-  const btn = document.getElementById('theme-toggle');
-  if (btn) btn.setAttribute('aria-label', getTheme() === 'dark' ? t('toLight') : t('toDark'));
-}
 
 /* 2. Títulos que aparecen palabra por palabra -------------------------------- */
 function splitWords(root) {
@@ -183,6 +159,87 @@ function initReveal() {
     });
   }, { threshold: 0.35, rootMargin: '0px 0px -8% 0px' });
   titles.forEach((el) => io.observe(el));
+}
+
+/* 2b. Scroll suave al tocar un link del menú ---------------------------------
+   Se hace con JS (y no con scroll-behavior de CSS) para que se deslice siempre,
+   también en Windows con "efectos de animación" apagados, y para descontar
+   la altura del header fijo. */
+function initSmoothScroll() {
+  const header = document.getElementById('site-header');
+  const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  let raf = 0;
+
+  const scrollToY = (to) => {
+    cancelAnimationFrame(raf);
+    const from = window.scrollY;
+    const dist = to - from;
+    // Más lejos = un poco más de tiempo, con tope (entre 450 y 900 ms)
+    const duration = Math.min(900, Math.max(450, Math.abs(dist) * 0.35));
+    const t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - t0) / duration, 1);
+      window.scrollTo(0, from + dist * ease(p));
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+  };
+  // Si el usuario scrollea con la rueda o el dedo, se cancela la animación
+  ['wheel', 'touchstart', 'keydown'].forEach((ev) => window.addEventListener(ev, () => cancelAnimationFrame(raf), { passive: true }));
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const id = link.getAttribute('href').slice(1);
+    const target = id ? document.getElementById(id) : null;
+    if (!target) return;
+    e.preventDefault();
+    const offset = id === 'top' ? 0 : (header?.offsetHeight || 64) + 16;
+    const y = id === 'top' ? 0 : target.getBoundingClientRect().top + window.scrollY - offset;
+    scrollToY(Math.max(0, y));
+    history.pushState(null, '', `#${id}`);
+    // Accesibilidad: el foco del teclado acompaña al scroll
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  });
+}
+
+/* 2c. Videos de los proyectos -----------------------------------------------
+   Se reproducen solo cuando están en pantalla (ahorra batería y datos) y tienen
+   botón de pausa. Con "reducir movimiento" arrancan pausados: se ven con el play. */
+function initCaseVideos() {
+  const videos = document.querySelectorAll('.case-video');
+  if (!videos.length) return;
+
+  videos.forEach((video) => {
+    const btn = video.closest('.browser-window')?.querySelector('.video-toggle');
+    let userPaused = prefersReducedMotion;
+    const sync = () => {
+      const paused = video.paused;
+      btn?.setAttribute('data-paused', String(paused));
+      btn?.setAttribute('aria-pressed', String(paused));
+      btn?.setAttribute('aria-label', paused ? t('videoPlay') : t('videoPause'));
+    };
+    video.addEventListener('play', sync);
+    video.addEventListener('pause', sync);
+    btn?.addEventListener('click', () => {
+      if (video.paused) { userPaused = false; video.play().catch(() => {}); }
+      else { userPaused = true; video.pause(); }
+    });
+
+    if (!('IntersectionObserver' in window)) { if (!userPaused) video.play().catch(() => {}); sync(); return; }
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !userPaused) video.play().catch(() => {});
+      else if (!entry.isIntersecting) video.pause();
+    }, { threshold: 0.35 }).observe(video);
+    sync();
+  });
+}
+
+function updateVideoLabels() {
+  document.querySelectorAll('.video-toggle').forEach((btn) => {
+    btn.setAttribute('aria-label', btn.getAttribute('data-paused') === 'true' ? t('videoPlay') : t('videoPause'));
+  });
 }
 
 /* 3. Header: transparente arriba, sólido al scrollear ----------------------- */
@@ -341,7 +398,7 @@ function loadHeroHead() {
     script.async = true;
     script.onload = () => {
       try {
-        heroHead = window.HeroHead.mountHeroHead(mount, getTheme());
+        window.HeroHead.mountHeroHead(mount);
       } catch (err) {
         console.warn('[hero-head] no se pudo iniciar', err);
       }

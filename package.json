@@ -4,7 +4,7 @@
   "description": "Landing by.nicocieplak — HTML + Tailwind compilado + cabeza 3D (three.js)",
   "scripts": {
     "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.css --minify",
-    "build:js": "esbuild ./src/hero-head.js --bundle --format=esm --minify --target=es2020 --outfile=./assets/js/hero-head.min.js",
+    "build:js": "esbuild ./src/hero-head.js --bundle --format=iife --global-name=HeroHead --minify --target=es2020 --outfile=./assets/js/hero-head.min.js",
     "build": "npm run build:css && npm run build:js",
     "dev": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.css --watch",
     "serve": "npx serve ."

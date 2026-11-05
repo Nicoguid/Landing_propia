@@ -134,11 +134,21 @@ function loadHeroHead() {
   if (!mount) return;
   if (navigator.connection && navigator.connection.saveData) return; // modo ahorro de datos
 
+  // Script clásico (no módulo ES): así funciona también abriendo index.html
+  // con doble clic (file://), donde el navegador bloquea los import().
   const start = () => {
-    const url = new URL('assets/js/hero-head.min.js', document.baseURI).href;
-    import(url)
-      .then((mod) => mod.mountHeroHead(mount))
-      .catch((err) => console.warn('[hero-head] no se pudo cargar', err));
+    const script = document.createElement('script');
+    script.src = 'assets/js/hero-head.min.js';
+    script.async = true;
+    script.onload = () => {
+      try {
+        window.HeroHead.mountHeroHead(mount);
+      } catch (err) {
+        console.warn('[hero-head] no se pudo iniciar', err);
+      }
+    };
+    script.onerror = () => console.warn('[hero-head] no se pudo descargar assets/js/hero-head.min.js');
+    document.body.appendChild(script);
   };
 
   const whenIdle = () => ('requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 1500 }) : setTimeout(start, 200));

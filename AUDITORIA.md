@@ -6,7 +6,7 @@ Revisión completa del código que estaba en `main` (commit `dcca2d4`) y qué se
 
 | # | Problema | Qué se hizo |
 |---|----------|-------------|
-| 1 | **Todos los botones de WhatsApp apuntan a un número falso** (`5493410000000`). Nadie te podía escribir. | Quedó en un solo lugar: `CONFIG.whatsappNumber` en `assets/js/main.js` (y en los `href` del HTML como respaldo). **Falta que pongas tu número real.** |
+| 1 | **Todos los botones de WhatsApp apuntan a un número falso** (`5493410000000`). Nadie te podía escribir. | Quedó en un solo lugar: `CONFIG.whatsappNumber` en `assets/js/main.js` (y en los `href` del HTML como respaldo). Configurado: +54 9 11 3674-0676. |
 | 2 | **La imagen para redes (`og:image`) era la foto de una mujer** (`hero-portrait.jpg`, 614 KB). Al compartir el link en WhatsApp/LinkedIn aparecía ella. | Se borró y se generó `og-image.jpg` (1200×630) con el hero y tu marca. |
 | 3 | **Tailwind por CDN (`cdn.tailwindcss.com`)**: es la versión "Play", que el propio Tailwind dice que no se use en producción. Descarga ~300 KB de JS y arma el CSS en el navegador → la página se ve sin estilos un instante y contradice el "carga en 0.4s". | Tailwind compilado: `assets/css/tailwind.css` pesa **3 KB gzip**. Se regenera con `npm run build`. |
 | 4 | **El dominio `artesanal.dev`** está en canonical, og:url y og:image, pero la marca es by.nicocieplak. | No se tocó: **confirmá cuál es tu dominio real** y reemplazalo (4 lugares en `index.html`). |

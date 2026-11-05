@@ -5,8 +5,8 @@
  */
 
 const CONFIG = {
-  // ⚠️ Reemplazá por tu número real (código de país + área, sin + ni espacios)
-  whatsappNumber: '5493410000000',
+  // Número de WhatsApp (código de país + área, sin + ni espacios): +54 9 11 3674-0676
+  whatsappNumber: '5491136740676',
 };
 
 // Cambiá este valor cada vez que subas cambios: obliga al navegador a bajar

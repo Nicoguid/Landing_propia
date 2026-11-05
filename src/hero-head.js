@@ -8,7 +8,7 @@ export function mountHeroHead(container) {
   const head = createParticleHead(container, {
     // Paleta de la página: azul eléctrico, celeste, verde WhatsApp y cian neón
     colors: ['#0070f3', '#38bdf8', '#3ad389', '#00e5ff'],
-    lookY: 1.05,
+    lookY: 1.3,
     lookYNarrow: 0.95,
     cameraZ: 7.4,
     cameraZNarrow: 12.5,

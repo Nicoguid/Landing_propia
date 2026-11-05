@@ -6,8 +6,8 @@ import { createParticleHead } from './particle-head.js';
 
 export function mountHeroHead(container) {
   const head = createParticleHead(container, {
-    colorTop: '#e4ecff',    // blanco azulado
-    colorBottom: '#00b8ff', // celeste de la marca
+    // Paleta de la página: azul eléctrico, celeste, verde WhatsApp y cian neón
+    colors: ['#0070f3', '#38bdf8', '#3ad389', '#00e5ff'],
     lookY: 1.05,
     lookYNarrow: 0.95,
     cameraZ: 7.4,

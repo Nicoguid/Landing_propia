@@ -12,8 +12,9 @@ import * as THREE from 'three';
 
 const DEFAULTS = {
   count: 120000,           // cantidad de partículas (bajalo en mobile si hace falta)
-  colorTop: '#e2dcff',     // color de la cabeza (lavanda)
-  colorBottom: '#d9ff3f',  // color de los hombros (verde lima)
+  // 4 colores que "fluyen" sobre el busto (de abajo hacia arriba, más una onda animada)
+  colors: ['#0070f3', '#38bdf8', '#3ad389', '#00e5ff'],
+  sparkle: 0.06,           // porcentaje de partículas blancas que brillan
   size: 13,                // tamaño base de cada partícula
   mouseRadius: 0.16,       // radio del "agujero" alrededor del cursor (en pantalla)
   mouseForce: 0.35,        // cuánto empuja el cursor a las partículas
@@ -27,7 +28,7 @@ const DEFAULTS = {
 
 /* ------------------------------------------------------------------ */
 /*  1) Forma del busto: funciones de distancia (SDF)                   */
-/*     Cada pieza (cráneo, nariz, orejas...) es una figura simple      */
+/*     Cada pieza (cráneo, cuello, hombros) es una figura simple      */
 /*     y las uniones suaves (smin) las funden en una sola superficie.  */
 /* ------------------------------------------------------------------ */
 const len = (x, y, z) => Math.sqrt(x * x + y * y + z * z);
@@ -57,33 +58,13 @@ const smax = (a, b, k) => -smin(-a, -b, k);
 function bustSDF(px, py, pz) {
   const ax = Math.abs(px); // simetría izquierda/derecha
 
-  // Cabeza
-  let d = ellipsoid(px, py, pz, 0, 1.62, -0.08, 0.74, 0.84, 0.86);                 // cráneo
-  d = smin(d, ellipsoid(px, py, pz, 0, 1.12, 0.12, 0.58, 0.78, 0.62), 0.25);       // cara
-  d = smin(d, capsule(ax, py, pz, 0.5, 1.02, -0.05, 0.06, 0.64, 0.38, 0.15), 0.2); // mandíbula
-  d = smin(d, sphere(px, py, pz, 0, 0.62, 0.44, 0.16), 0.15);                      // mentón
-  d = smin(d, sphere(ax, py, pz, 0.38, 1.22, 0.48, 0.17), 0.18);                   // pómulos
-  d = smin(d, ellipsoid(px, py, pz, 0, 0.88, 0.55, 0.32, 0.22, 0.25), 0.15);       // zona boca
-  d = smin(d, capsule(px, py, pz, -0.34, 1.53, 0.66, 0.34, 1.53, 0.66, 0.1), 0.12);  // cejas
-
-  // Ojos: cuenca hundida + globo ocular
-  d = smax(d, -sphere(ax, py, pz, 0.26, 1.37, 0.82, 0.17), 0.06);
-  d = smin(d, sphere(ax, py, pz, 0.26, 1.35, 0.6, 0.1), 0.02);
-
-  // Nariz
-  d = smin(d, capsule(px, py, pz, 0, 1.45, 0.76, 0, 1.1, 0.96, 0.065), 0.08);
-  d = smin(d, sphere(px, py, pz, 0, 1.07, 0.96, 0.105), 0.06);
-  d = smin(d, sphere(ax, py, pz, 0.09, 1.04, 0.84, 0.075), 0.05);
-
-  // Labios
-  d = smin(d, ellipsoid(px, py, pz, 0, 0.9, 0.76, 0.2, 0.05, 0.08), 0.04);
-  d = smin(d, ellipsoid(px, py, pz, 0, 0.81, 0.73, 0.17, 0.05, 0.08), 0.04);
-
-  // Orejas
-  d = smin(d, ellipsoid(ax, py, pz, 0.74, 1.3, -0.02, 0.07, 0.2, 0.13), 0.06);
+  // Cabeza lisa, sin rasgos: cráneo + parte de adelante + mandíbula suave
+  let d = ellipsoid(px, py, pz, 0, 1.62, -0.06, 0.74, 0.86, 0.84);                 // cráneo
+  d = smin(d, ellipsoid(px, py, pz, 0, 1.15, 0.1, 0.6, 0.8, 0.62), 0.3);           // frente / cara
+  d = smin(d, capsule(ax, py, pz, 0.46, 1.0, -0.05, 0.08, 0.66, 0.3, 0.17), 0.3);  // mandíbula
 
   // Cuello, hombros y pecho
-  d = smin(d, capsule(px, py, pz, 0, 0.0, -0.1, 0, 1.0, -0.12, 0.37), 0.15);
+  d = smin(d, capsule(px, py, pz, 0, 0.0, -0.1, 0, 1.0, -0.12, 0.37), 0.18);
   d = smin(d, ellipsoid(px, py, pz, 0, -0.55, -0.1, 1.9, 0.62, 0.72), 0.45);
   d = smin(d, ellipsoid(px, py, pz, 0, -0.75, 0.12, 1.2, 0.7, 0.6), 0.3);
 
@@ -177,9 +158,12 @@ const vertexShader = /* glsl */ `
   uniform float uPixelRatio;
 
   varying float vLight;
-  varying float vY;
+  varying float vColorT;
+  varying float vSpark;
   varying float vFade;
   varying float vHit;
+
+  uniform float uSparkle;
 
   mat3 rotY(float a) { float c = cos(a), s = sin(a); return mat3(c,0.,-s, 0.,1.,0., s,0.,c); }
   mat3 rotX(float a) { float c = cos(a), s = sin(a); return mat3(1.,0.,0., 0.,c,s, 0.,-s,c); }
@@ -225,10 +209,14 @@ const vertexShader = /* glsl */ `
     float diffuse = max(dot(nv, L), 0.0);
     float rim = pow(1.0 - abs(nv.z), 2.0);
     float sparkle = aRandom.y > 0.92 ? 1.6 : 1.0;
-    float body = mix(0.6, 1.0, smoothstep(-0.7, 0.5, position.y)); // hombros más apagados
+    float body = mix(0.8, 1.0, smoothstep(-0.7, 0.5, position.y)); // hombros más apagados
     vLight = (0.06 + diffuse * 0.95 + rim * 0.3) * sparkle * body;
 
-    vY = position.y;
+    // Posición en la paleta: abajo -> arriba + ondas que se mueven con el tiempo
+    float flow = sin(position.x * 1.8 + position.y * 1.2 + uTime * 0.5) * 0.5
+               + sin(position.z * 2.3 - position.y * 1.7 - uTime * 0.35) * 0.5;
+    vColorT = clamp(0.35 + 0.27 * position.y + flow * 0.22 + (aRandom.z - 0.5) * 0.15, 0.0, 1.0);
+    vSpark = step(1.0 - uSparkle, aRandom.y);
     vFade = smoothstep(-1.05, -0.25, position.y) * smoothstep(1.9, 1.0, abs(position.x));
     vHit = hit;
 
@@ -237,21 +225,31 @@ const vertexShader = /* glsl */ `
 `;
 
 const fragmentShader = /* glsl */ `
-  uniform vec3  uColorTop;
-  uniform vec3  uColorBottom;
+  uniform vec3  uC0;
+  uniform vec3  uC1;
+  uniform vec3  uC2;
+  uniform vec3  uC3;
   uniform float uOpacity;
 
   varying float vLight;
-  varying float vY;
+  varying float vColorT;
+  varying float vSpark;
   varying float vFade;
   varying float vHit;
+
+  vec3 palette(float t) {
+    t *= 3.0;
+    if (t < 1.0) return mix(uC0, uC1, t);
+    if (t < 2.0) return mix(uC1, uC2, t - 1.0);
+    return mix(uC2, uC3, t - 2.0);
+  }
 
   void main() {
     float r = length(gl_PointCoord - 0.5);
     if (r > 0.5) discard;
 
-    float g = smoothstep(0.2, -0.95, vY);         // degradé cabeza -> hombros
-    vec3 col = mix(uColorTop, uColorBottom, g);
+    vec3 col = palette(vColorT);
+    col = mix(col, vec3(1.0), vSpark * 0.7);      // algunas partículas blancas
     col *= vLight;
     col = mix(col, vec3(1.0), vHit * 0.4);        // brillo donde toca el cursor
 
@@ -323,8 +321,11 @@ export function createParticleHead(container, options = {}) {
     uAspect: { value: 1 },
     uSize: { value: o.size },
     uPixelRatio: { value: pixelRatio },
-    uColorTop: { value: new THREE.Color(o.colorTop) },
-    uColorBottom: { value: new THREE.Color(o.colorBottom) },
+    uC0: { value: new THREE.Color(o.colors[0]) },
+    uC1: { value: new THREE.Color(o.colors[1]) },
+    uC2: { value: new THREE.Color(o.colors[2]) },
+    uC3: { value: new THREE.Color(o.colors[3]) },
+    uSparkle: { value: o.sparkle },
     uOpacity: { value: 1 },
   };
 
@@ -420,10 +421,9 @@ export function createParticleHead(container, options = {}) {
   tick();
 
   return {
-    /** Cambiar colores en caliente: head.setColors('#fff', '#0ff') */
-    setColors(top, bottom) {
-      if (top) uniforms.uColorTop.value.set(top);
-      if (bottom) uniforms.uColorBottom.value.set(bottom);
+    /** Cambiar la paleta en caliente: head.setColors(['#0070f3', '#38bdf8', '#3ad389', '#00e5ff']) */
+    setColors(colors) {
+      [uniforms.uC0, uniforms.uC1, uniforms.uC2, uniforms.uC3].forEach((u, i) => colors[i] && u.value.set(colors[i]));
     },
     destroy() {
       cancelAnimationFrame(raf);

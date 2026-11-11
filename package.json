@@ -5,7 +5,7 @@
   "scripts": {
     "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.css --minify",
     "build:js": "esbuild ./src/hero-head.js --bundle --format=iife --global-name=HeroHead --minify --target=es2020 --outfile=./assets/js/hero-head.min.js",
-    "build": "npm run build:css && npm run build:js",
+    "build": "npm run build:css && npm run build:js && node scripts-prepare-public.cjs",
     "dev": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.css --watch",
     "serve": "npx serve ."
   },

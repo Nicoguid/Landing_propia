@@ -10,3 +10,6 @@ dist/
 # Gemini / Local Cache & Duplicates
 .gemini/
 .agent/
+
+# Output de Vercel
+public/

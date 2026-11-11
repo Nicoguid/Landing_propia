@@ -29,11 +29,6 @@ window.I18N = {
     'hero.cta': 'I want my website',
     'hero.cta2': 'Build my request',
 
-    'metrics.label': 'Results',
-    'metrics.1': 'more WhatsApp inquiries',
-    'metrics.2': 'original design, zero templates',
-    'metrics.3': 'load time',
-
     'projects.kicker': 'Real work',
     'projects.title': 'Projects already <span class="tone">live in production.</span>',
     'projects.sub': 'Active products serving customers every day.',

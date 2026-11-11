@@ -11,6 +11,12 @@
   font-display: swap;
 }
 @font-face {
+  font-family: 'Instrument Serif';
+  src: url('../fonts/instrument-serif-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
   font-family: 'Geist Mono';
   src: url('../fonts/geist-mono-400.woff2') format('woff2');
   font-weight: 400;
@@ -32,27 +38,26 @@
 /* ---------- Tokens de color ----------
    Todo el sitio usa estas variables: para cambiar un color, cambialo acá. */
 :root {
-  --bg: #000000;
-  --surface: #050608;
-  --surface-2: #0a0d14;
+  --bg: #0f1113;
+  --surface: #15181b;
+  --surface-2: #1b1f23;
   --fg: #ffffff;
   --fg-soft: #f0f0f0;
-  --muted: #a1a4a5;
-  --faint: #8b9098;        /* 5.6:1 sobre --surface */
+  --muted: #b9bec2;           /* 9.5:1 sobre --surface */
+  --faint: #a9afb5;        /* 8.1:1 sobre --surface */
   --line: #292d30;
   --line-strong: #3a4045;
-  --accent: #38bdf8;        /* celeste de la marca */
-  --accent-2: #00e5ff;      /* cian neón */
+  --accent: #8fbbd6;        /* celeste de la marca, apagado */
+  --accent-2: #a6cfe6;      /* celeste claro */
   --ok: #3ad389;
   --bad: #ff9592;
-  --on-accent: #03131c;     /* texto/ícono encima del acento */
+  --on-accent: #0b1418;     /* texto/ícono encima del acento */
   --blue: #0070f3;
 
-  --title-1: linear-gradient(180deg, #f6f7f9 10%, #a7adb4 100%);
-  --title-2: linear-gradient(100deg, #7dd3fc 0%, #38bdf8 40%, #00e5ff 100%);
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --glow-a: rgba(0, 229, 255, 0.22);
   --glow-b: rgba(0, 112, 243, 0.25);
-  --shadow-brand: rgba(0, 112, 243, 0.35);
+  --shadow-soft: rgba(0, 0, 0, 0.45);
   color-scheme: dark;
 }
 
@@ -192,7 +197,6 @@ body {
   height: 8px;
   border-radius: 50%;
   background-color: var(--ok);
-  box-shadow: 0 0 10px var(--ok);
   flex-shrink: 0;
 }
 .live-dot::after {
@@ -256,12 +260,12 @@ body {
   font-weight: 700;
   background-color: #25d366;
   border: 0;
-  box-shadow: 0 10px 28px -8px rgba(37, 211, 102, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 4px var(--shadow-soft);
 }
 .btn-wa svg { width: 22px; height: 22px; fill: currentColor; }
 .btn-wa:hover {
   background-color: #2ee673;
-  box-shadow: 0 14px 34px -8px rgba(37, 211, 102, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 8px var(--shadow-soft);
   transform: translateY(-2px);
 }
 
@@ -287,32 +291,6 @@ body {
   overflow: hidden;
 }
 
-/* Resplandor azul desde abajo, detrás de los hombros */
-.hero-glow {
-  position: absolute;
-  inset: auto 0 -25% 0;
-  height: 80%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(40% 50% at 50% 100%, var(--glow-a), transparent 70%),
-    radial-gradient(60% 70% at 50% 100%, var(--glow-b), transparent 75%);
-}
-
-/* Grilla sutil de fondo */
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--fg) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--fg) 4%, transparent) 1px, transparent 1px);
-  background-size: 64px 64px;
-  -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 30%, transparent 100%);
-  mask-image: radial-gradient(70% 60% at 50% 40%, #000 30%, transparent 100%);
-}
-
 .hero-title {
   position: relative;
   z-index: 3; /* delante de la cabeza: con una frase larga, la legibilidad manda */
@@ -320,27 +298,25 @@ body {
   max-width: 1440px;
   margin: 2vh auto 0;
   padding: 0.12em 4vw 0.06em;
-  font-family: 'Geist Mono', ui-monospace, monospace;
-  font-weight: 500;
-  font-size: clamp(44px, 8.4vw, 150px); /* calibrado para 2 líneas de ~15 letras */
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(48px, 9.2vw, 168px); /* calibrado para 2 líneas de ~15 letras */
   line-height: 0.92;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.005em;
   text-transform: uppercase;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
 }
 
-/* Cada línea con su propio degradé: blanco arriba, celeste de la marca abajo */
+/* Cada línea de un solo color: blanco arriba, celeste de la marca abajo */
 .hero-line {
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
   padding-top: 0.12em;       /* aire para la tilde de la Ñ */
   margin-top: -0.12em;
 }
-.hero-line--1 { background-image: var(--title-1); }
-.hero-line--2 { background-image: var(--title-2); }
+.hero-line--1 { color: var(--fg); }
+.hero-line--2 { color: var(--accent); }
 
 /* Primera línea a la izquierda, segunda a la derecha */
 .hero-line { display: block; }
@@ -388,7 +364,7 @@ body {
 @media (max-width: 767px) {
   .hero-title {
     white-space: normal;
-    font-size: 13.5vw;
+    font-size: 13vw;
     line-height: 0.9;
     margin-top: 1vh;
   }
@@ -417,20 +393,24 @@ body {
   height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
 }
 
 /* Títulos de sección: dos colores */
 .section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis: none;
   margin-top: 14px;
-  font-size: clamp(2rem, 4.6vw, 3.5rem);
-  font-weight: 500;
+  font-size: clamp(2.25rem, 5.2vw, 4rem);
   line-height: 1.02;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.015em;
   color: var(--fg);
   text-wrap: balance;
 }
 .tone { color: var(--accent); }
+
+/* Títulos de tarjeta: misma serif que los títulos grandes */
+h3 { font-family: var(--font-display); font-synthesis: none; }
 
 /* Aparición palabra por palabra (main.js parte el título en palabras) */
 .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.12em; margin-bottom: -0.12em; }
@@ -467,17 +447,6 @@ body {
 .lang-toggle button:hover { color: var(--fg); }
 .lang-toggle button[aria-pressed="true"] { color: var(--on-accent); background: var(--accent); }
 
-/* Tira de métricas */
-.metric {
-  padding: 28px 24px;
-  border-right: 1px solid var(--line);
-}
-.metric:last-child { border-right: 0; }
-@media (max-width: 639px) {
-  .metric { border-right: 0; border-bottom: 1px solid var(--line); padding: 20px 16px; }
-  .metric:last-child { border-bottom: 0; }
-}
-
 /* ==========================================================================
    PROYECTOS — ventana de navegador
    ========================================================================== */
@@ -486,13 +455,13 @@ body {
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 30px 80px -30px var(--shadow-brand);
+  box-shadow: 0 4px 12px var(--shadow-soft);
   transition: border-color 0.2s ease-out, transform 0.2s var(--ease-out), box-shadow 0.2s ease-out;
 }
 .case:hover .browser-window {
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
   transform: translateY(-4px);
-  box-shadow: 0 40px 90px -30px color-mix(in srgb, var(--shadow-brand) 100%, var(--blue) 30%);
+  box-shadow: 0 8px 20px var(--shadow-soft);
 }
 .browser-bar {
   display: flex;
@@ -695,7 +664,6 @@ a.address-pill:hover { color: var(--fg); border-color: var(--accent); }
   border-radius: 50%;
   background: var(--bg);
   border: 2px solid var(--dot, var(--accent));
-  box-shadow: 0 0 12px var(--dot, var(--accent));
 }
 @media (min-width: 768px) {
   .timeline { grid-template-columns: repeat(3, 1fr); gap: 32px; }
@@ -822,7 +790,7 @@ a.address-pill:hover { color: var(--fg); border-color: var(--accent); }
   background: var(--bg);
   color: var(--fg);
   border: 1px solid var(--line);
-  box-shadow: 0 30px 80px -30px var(--shadow-brand);
+  box-shadow: 0 4px 12px var(--shadow-soft);
 }
 @media (min-width: 640px) { .quote-form { padding: 36px; } }
 .field { display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; font-weight: 600; }
@@ -900,7 +868,7 @@ a.address-pill:hover { color: var(--fg); border-color: var(--accent); }
   border-radius: 50%;
   background: #25d366;
   color: #ffffff;
-  box-shadow: 0 12px 30px -6px rgba(37, 211, 102, 0.6);
+  box-shadow: 0 3px 8px var(--shadow-soft);
   opacity: 0;
   transform: translateY(16px) scale(0.9);
   pointer-events: none;
